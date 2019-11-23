@@ -79,7 +79,7 @@ func getAgentPodObject(containerId string) *v1.Pod {
 						{
 							Name:          "grpc",
 							ContainerPort: 5555,
-							Protocol:      "tcp",
+							Protocol:      "TCP",
 						},
 					},
 					ImagePullPolicy: v1.PullIfNotPresent,
@@ -212,7 +212,9 @@ func main() {
 	clusterIp = strings.Split(clusterIp, ",")[0]
 	fmt.Println(clusterIp)
 
-	conn, err := grpc.Dial(clusterIp, grpc.WithInsecure())
+	endPoint := clusterIp+":5555"
+
+	conn, err := grpc.Dial(endPoint, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
