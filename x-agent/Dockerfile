@@ -12,6 +12,8 @@ RUN set -ex; \
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
+COPY x-agent /
+RUN chmod +x /x-agent
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/bin/bash"]
+CMD ["/x-agent"]

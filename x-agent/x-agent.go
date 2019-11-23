@@ -6,7 +6,7 @@ import (
 	"github.com/docker/docker/client"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	"github.com/mJace/x-tracer/x-agent/route"
+	pb "github.com/mJace/x-tracer/x-agent/route"
 	"log"
 	"net"
 	"os"
@@ -18,8 +18,8 @@ const (
 
 type server struct{}
 
-func (s *server) SayHello(ctx context.Context, in *x_agent.HelloRequest) (*x_agent.HelloReply, error) {
-	return &x_agent.HelloReply{Message: "Hello " + in.Name}, nil
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
 
 func main (){
@@ -36,7 +36,7 @@ func main (){
 	}
 	s := grpc.NewServer()
 	log.Println("Start x-agent server...")
-	x_agent.RegisterGreeterServer(s, &server{})
+	pb.RegisterGreeterServer(s, &server{})
 	// Register reflection service on gRPC server.
 	reflection.Register(s)
 	if err := s.Serve(lis); err != nil {

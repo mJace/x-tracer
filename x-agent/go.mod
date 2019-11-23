@@ -1,4 +1,4 @@
-module github.com/mJace/x-agent
+module github.com/mJace/x-tracer/x-agent
 
 go 1.12
 

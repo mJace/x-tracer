@@ -12,6 +12,11 @@ import (
 	"path/filepath"
 	"reflect"
 	"strings"
+	"time"
+
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
+	pb "github.com/mJace/x-tracer/x-agent/route"
 )
 
 func homeDir() string {
@@ -27,6 +32,31 @@ func getFieldString(e *v1.ContainerStatus, field string) string {
 	return f.String()
 }
 
+func getAgentService() *v1.Service {
+	return &v1.Service{
+		TypeMeta:   metav1.TypeMeta{
+			Kind: "service",
+			APIVersion: "v1",
+		},
+		ObjectMeta: metav1.ObjectMeta{
+			Name: "agent-service",
+			Namespace: "default",
+		},
+		Spec:       v1.ServiceSpec{
+			Selector: map[string]string{
+				"app": "x-agent",
+			},
+			Ports: []v1.ServicePort{
+				{
+					Name: "grpc",
+					Protocol: "TCP",
+					Port: 5555,
+				},
+			},
+		},
+	}
+}
+
 func getAgentPodObject(containerId string) *v1.Pod {
 	return &v1.Pod{
 		TypeMeta: metav1.TypeMeta{
@@ -36,12 +66,22 @@ func getAgentPodObject(containerId string) *v1.Pod {
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      "test-pod",
 			Namespace: "default",
+			Labels: map[string]string{
+				"app" : "x-agent",
+			},
 		},
 		Spec: v1.PodSpec{
 			Containers: []v1.Container{
 				{
 					Name:            "busybox",
-					Image:           "ubuntu",
+					Image:           "mjace/x-agent",
+					Ports: []v1.ContainerPort{
+						{
+							Name:          "grpc",
+							ContainerPort: 5555,
+							Protocol:      "tcp",
+						},
+					},
 					ImagePullPolicy: v1.PullIfNotPresent,
 					Command: []string{
 						"sleep",
@@ -136,13 +176,69 @@ func main() {
 	}
 
 	agentPod := getAgentPodObject(containerId)
+	agentSvc := getAgentService()
 
-	_, err = clientSet.CoreV1().Pods(agentPod.Namespace).Create(agentPod)
+	pod, err := clientSet.CoreV1().Pods(agentPod.Namespace).Create(agentPod)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("x-tracer agent created successfully...")
-	//TODO gRPC server
+
+	svc, err := clientSet.CoreV1().Services(agentSvc.Namespace).Create(agentSvc)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("x-tracer agent service created successfully...")
+
+
+
+	defer func() {
+		deletePolicy := metav1.DeletePropagationForeground
+		fmt.Println("delete pod and svc")
+		err = clientSet.CoreV1().Pods(agentPod.Namespace).Delete(pod.Name, &metav1.DeleteOptions{
+			PropagationPolicy: &deletePolicy,
+		})
+		err = clientSet.CoreV1().Services(agentSvc.Namespace).Delete(svc.Name, &metav1.DeleteOptions{
+			PropagationPolicy: &deletePolicy,
+		})
+	}()
+
+	fmt.Println("sleep 20 second...")
+	time.Sleep(10* time.Second)
+
+	// Get svc cluster IP
+	svcObj, err := clientSet.CoreV1().Services(agentSvc.Namespace).Get(svc.Name, metav1.GetOptions{})
+	clusterIp := strings.SplitAfter(svcObj.String(), "ClusterIP:")[1]
+	clusterIp = strings.Split(clusterIp, ",")[0]
+	fmt.Println(clusterIp)
+
+	conn, err := grpc.Dial(clusterIp, grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+	c := pb.NewGreeterClient(conn)
+
+	// Contact the server and print out its response.
+	name := "hello jace"
+	if len(os.Args) > 1 {
+		name = os.Args[1]
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+	if err != nil {
+		log.Fatalf("could not greet: %v", err)
+	}
+	log.Printf("Greeting: %s", r.Message)
+
+
+	for {
+		time.Sleep(10* time.Second)
+	}
+	//TODO gRPC client
+
+
 
 	// TODO pod destroyer
 
