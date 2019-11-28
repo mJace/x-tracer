@@ -58,6 +58,8 @@ func getAgentService() *v1.Service {
 }
 
 func getAgentPodObject(containerId string) *v1.Pod {
+	t := true
+	var user int64 = 0
 	return &v1.Pod{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "pod",
@@ -83,9 +85,9 @@ func getAgentPodObject(containerId string) *v1.Pod {
 						},
 					},
 					ImagePullPolicy: v1.PullIfNotPresent,
-					Command: []string{
-						"sleep",
-						"3600",
+					SecurityContext: &v1.SecurityContext{
+						Privileged:               &t,
+						RunAsUser:                &user,
 					},
 					Env: []v1.EnvVar{
 						{

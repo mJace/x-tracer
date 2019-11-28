@@ -8,7 +8,11 @@ RUN set -ex; \
     auditd \
     bcc-tools \
     libelf1 \
-    libbcc-examples;
+    libbcc-examples \
+    software-properties-common; \
+  add-apt-repository ppa:longsleep/golang-backports; \
+  apt-get update -y; \
+  apt-get install golang-go -y;
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
