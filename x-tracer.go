@@ -66,7 +66,7 @@ func getAgentPodObject(containerId string) *v1.Pod {
 			APIVersion: "v1",
 		},
 		ObjectMeta: metav1.ObjectMeta{
-			Name:      "test-pod",
+			Name:      "x-agent",
 			Namespace: "default",
 			Labels: map[string]string{
 				"app" : "x-agent",
@@ -121,7 +121,7 @@ func main() {
 		panic(err.Error())
 	}
 
-	clientSet, err := kubernetes.NewForConfig(config)
+	 clientSet, err := kubernetes.NewForConfig(config)
 	if err != nil {
 		panic(err.Error())
 	}
@@ -170,12 +170,15 @@ func main() {
 
 	podObj, _ := clientSet.CoreV1().Pods(namespaces.Items[nsIndex].Name).Get(pods.Items[podIndex].Name, metav1.GetOptions{})
 
+	fmt.Println(podObj.Status.String())
+
 	var containerId string
 	for index := range podObj.Status.ContainerStatuses {
 		containerId = getFieldString(&podObj.Status.ContainerStatuses[index], "ContainerID")
 		containerId = strings.SplitAfter(containerId, "://")[1]
 		fmt.Println(containerId)
 	}
+
 
 	agentPod := getAgentPodObject(containerId)
 	agentSvc := getAgentService()
