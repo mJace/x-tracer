@@ -7,16 +7,19 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/kubectl/pkg/describe/versioned"
+	"k8s.io/kubectl/pkg/describe"
 	"log"
 	"os"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"strings"
 	"time"
 
+	pb "github.com/mJace/x-tracer/x-agent/route"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	pb "github.com/mJace/x-tracer/x-agent/route"
 )
 
 func homeDir() string {
@@ -57,7 +60,7 @@ func getAgentService() *v1.Service {
 	}
 }
 
-func getAgentPodObject(containerId string) *v1.Pod {
+func getAgentPodObject(containerId string, nodeId string) *v1.Pod {
 	t := true
 	var user int64 = 0
 	return &v1.Pod{
@@ -73,6 +76,11 @@ func getAgentPodObject(containerId string) *v1.Pod {
 			},
 		},
 		Spec: v1.PodSpec{
+			NodeSelector: map[string]string{
+
+					"kubernetes.io/hostname" : nodeId,
+
+			},
 			Containers: []v1.Container{
 				{
 					Name:            "busybox",
@@ -170,7 +178,14 @@ func main() {
 
 	podObj, _ := clientSet.CoreV1().Pods(namespaces.Items[nsIndex].Name).Get(pods.Items[podIndex].Name, metav1.GetOptions{})
 
-	fmt.Println(podObj.Status.String())
+	podDesc := versioned.PodDescriber{clientSet }
+	descStr, err :=podDesc.Describe(podObj.Namespace, podObj.Name, describe.DescriberSettings{ShowEvents:false})
+
+	descStr = strings.SplitAfter(descStr, "Node:")[1]
+	descStr = strings.Split(descStr, "/")[0]
+	reg := regexp.MustCompile("[^\\s]+")
+	targetNode := reg.FindAllString(descStr,1)[0]
+
 
 	var containerId string
 	for index := range podObj.Status.ContainerStatuses {
@@ -180,7 +195,7 @@ func main() {
 	}
 
 
-	agentPod := getAgentPodObject(containerId)
+	agentPod := getAgentPodObject(containerId, targetNode)
 	agentSvc := getAgentService()
 
 	pod, err := clientSet.CoreV1().Pods(agentPod.Namespace).Create(agentPod)
