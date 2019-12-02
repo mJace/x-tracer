@@ -3,6 +3,7 @@ module github.com/mJace/x-tracer
 go 1.12
 
 require (
+	github.com/golang/protobuf v1.3.2
 	github.com/imdario/mergo v0.3.7 // indirect
 	github.com/mJace/x-tracer/x-agent v0.0.0-20191123082016-ab22f3a47f76
 	golang.org/x/crypto v0.0.0-20190927123631-a832865fa7ad // indirect

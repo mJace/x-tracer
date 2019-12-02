@@ -7,26 +7,68 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/clientcmd"
-	"k8s.io/kubectl/pkg/describe/versioned"
 	"k8s.io/kubectl/pkg/describe"
+	"k8s.io/kubectl/pkg/describe/versioned"
+	"net"
+	"context"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
+	pb "github.com/mJace/x-tracer/route"
+
 	"log"
 	"os"
+	"os/signal"
 	"path/filepath"
 	"reflect"
 	"regexp"
 	"strings"
+	"syscall"
 	"time"
-
-	pb "github.com/mJace/x-tracer/x-agent/route"
-	"golang.org/x/net/context"
-	"google.golang.org/grpc"
 )
+
+var clientSet *kubernetes.Clientset
+var pod *v1.Pod
+var svc *v1.Service
+
+const (
+	port  = ":5555"
+)
+
+type server struct{}
+
+func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+}
+
 
 func homeDir() string {
 	if h := os.Getenv("HOME"); h != "" {
 		return h
 	}
 	return os.Getenv("USERPROFILE") // windows
+}
+
+func getHostName() string {
+	name, err := os.Hostname()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Hostname : ",name)
+	return name
+}
+
+func SetupCloseHandler() {
+	c := make(chan os.Signal, 2)
+	signal.Notify(c, os.Interrupt, syscall.SIGTERM)
+	go func() {
+		<-c
+		fmt.Println("\r- Ctrl+C pressed in Terminal")
+		fmt.Println("Delete agent pod and service")
+		_ = clientSet.CoreV1().Pods(pod.Namespace).Delete(pod.Name, &metav1.DeleteOptions{})
+		_ = clientSet.CoreV1().Services(svc.Namespace).Delete(svc.Name, &metav1.DeleteOptions{})
+		os.Exit(0)
+	}()
 }
 
 func getFieldString(e *v1.ContainerStatus, field string) string {
@@ -60,7 +102,7 @@ func getAgentService() *v1.Service {
 	}
 }
 
-func getAgentPodObject(containerId string, nodeId string) *v1.Pod {
+func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.Pod {
 	t := true
 	var user int64 = 0
 	return &v1.Pod{
@@ -106,6 +148,10 @@ func getAgentPodObject(containerId string, nodeId string) *v1.Pod {
 							Name:  "tools",
 							Value: "net",
 						},
+						{
+							Name: "masterIp",
+							Value: masterIp,
+						},
 					},
 				},
 			},
@@ -117,6 +163,8 @@ func main() {
 	log.Println("Start x-tracer")
 
 	var kubeconfig *string
+	var debug *bool
+	debug = flag.Bool("kind", false, "for kind env.")
 	if home := homeDir(); home != "" {
 		kubeconfig = flag.String("kubeconfig", filepath.Join(home, ".kube", "config"), "(optional) absolute path to the kubeconfig file")
 	} else {
@@ -129,10 +177,12 @@ func main() {
 		panic(err.Error())
 	}
 
-	 clientSet, err := kubernetes.NewForConfig(config)
+	 clientSet, err = kubernetes.NewForConfig(config)
 	if err != nil {
 		panic(err.Error())
 	}
+
+
 
 	namespaces, err := clientSet.CoreV1().Namespaces().List(metav1.ListOptions{})
 	if err != nil {
@@ -194,37 +244,31 @@ func main() {
 		fmt.Println(containerId)
 	}
 
+	var currentNode *v1.Node
 
-	agentPod := getAgentPodObject(containerId, targetNode)
+	if *debug {
+		currentNode, err = clientSet.CoreV1().Nodes().Get("kind-control-plane", metav1.GetOptions{})
+	} else {
+		currentNode, err = clientSet.CoreV1().Nodes().Get(getHostName(), metav1.GetOptions{})
+	}
+	nodeIp := strings.Split(currentNode.Status.Addresses[0].Address," ")[0]
+
+	// Initial pod and service.
+	agentPod := getAgentPodObject(containerId, targetNode, nodeIp)
 	agentSvc := getAgentService()
 
-	pod, err := clientSet.CoreV1().Pods(agentPod.Namespace).Create(agentPod)
+	pod, err = clientSet.CoreV1().Pods(agentPod.Namespace).Create(agentPod)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("x-tracer agent created successfully...")
 
-	svc, err := clientSet.CoreV1().Services(agentSvc.Namespace).Create(agentSvc)
+	svc, err = clientSet.CoreV1().Services(agentSvc.Namespace).Create(agentSvc)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println("x-tracer agent service created successfully...")
 
-
-
-	defer func() {
-		deletePolicy := metav1.DeletePropagationForeground
-		fmt.Println("delete pod and svc")
-		err = clientSet.CoreV1().Pods(agentPod.Namespace).Delete(pod.Name, &metav1.DeleteOptions{
-			PropagationPolicy: &deletePolicy,
-		})
-		err = clientSet.CoreV1().Services(agentSvc.Namespace).Delete(svc.Name, &metav1.DeleteOptions{
-			PropagationPolicy: &deletePolicy,
-		})
-	}()
-
-	fmt.Println("sleep 20 second...")
-	time.Sleep(10* time.Second)
 
 	// Get svc cluster IP
 	svcObj, err := clientSet.CoreV1().Services(agentSvc.Namespace).Get(svc.Name, metav1.GetOptions{})
@@ -232,36 +276,29 @@ func main() {
 	clusterIp = strings.Split(clusterIp, ",")[0]
 	fmt.Println(clusterIp)
 
-	endPoint := clusterIp+":5555"
+	SetupCloseHandler()
 
-	conn, err := grpc.Dial(endPoint, grpc.WithInsecure())
+	lis, err := net.Listen("tcp", port)
 	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		log.Fatalf("failed to listen: %v", err)
 	}
-	defer conn.Close()
-	c := pb.NewGreeterClient(conn)
-
-	// Contact the server and print out its response.
-	name := "hello jace"
-	if len(os.Args) > 1 {
-		name = os.Args[1]
+	s := grpc.NewServer()
+	log.Println("Start x-agent server...")
+	pb.RegisterGreeterServer(s, &server{})
+	// Register reflection service on gRPC server.
+	reflection.Register(s)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
-	}
-	log.Printf("Greeting: %s", r.Message)
 
-
+	// Run our program... We create a file to clean up then sleep
 	for {
-		time.Sleep(10* time.Second)
+		fmt.Println("- Sleeping")
+		time.Sleep(10 * time.Second)
 	}
-	//TODO gRPC client
 
 
 
-	// TODO pod destroyer
+
 
 }
