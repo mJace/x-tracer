@@ -105,6 +105,7 @@ func getAgentService() *v1.Service {
 func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.Pod {
 	t := true
 	var user int64 = 0
+	var pathType = v1.HostPathDirectory
 	return &v1.Pod{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       "pod",
@@ -151,6 +152,74 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 						{
 							Name: "masterIp",
 							Value: masterIp,
+						},
+					},
+					VolumeMounts: []v1.VolumeMount{
+						{
+							MountPath: "/lib/modules",
+							Name: "kernel-modules",
+						},
+						{
+							MountPath: "/usr/src",
+							Name: "kernel-src",
+						},
+						{
+							MountPath: "/etc/localtime",
+							Name: "localtime",
+						},
+						{
+							MountPath: "/sys",
+							Name: "sys",
+						},
+						{
+							MountPath: "/var/run/docker.sock",
+							Name: "docker-sock",
+						},
+					},
+				},
+			},
+			Volumes: []v1.Volume{
+				{
+					Name: "kernel-modules",
+					VolumeSource: v1.VolumeSource{
+						HostPath: &v1.HostPathVolumeSource{
+							Path: "/lib/modules",
+							Type: &pathType,
+						},
+					},
+				},
+				{
+					Name: "kernel-src",
+					VolumeSource: v1.VolumeSource{
+						HostPath: &v1.HostPathVolumeSource{
+							Path: "/usr/src",
+							Type: &pathType,
+						},
+					},
+				},
+				{
+					Name: "localtime",
+					VolumeSource: v1.VolumeSource{
+						HostPath: &v1.HostPathVolumeSource{
+							Path: "/etc/localtime",
+						},
+					},
+				},
+				{
+					Name: "sys",
+					VolumeSource: v1.VolumeSource{
+						HostPath: &v1.HostPathVolumeSource{
+							Path: "/sys",
+							Type: &pathType,
+						},
+					},
+				},
+				{
+					Name: "docker-sock",
+					VolumeSource: v1.VolumeSource{
+						HostPath: &v1.HostPathVolumeSource{
+							Path: "/var/run/docker.sock",
+							Type: &pathType,
 						},
 					},
 				},
@@ -296,9 +365,5 @@ func main() {
 		fmt.Println("- Sleeping")
 		time.Sleep(10 * time.Second)
 	}
-
-
-
-
 
 }
