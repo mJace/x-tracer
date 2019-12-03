@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/docker/docker/client"
-	pb "github.com/mJace/x-tracer/x-agent/route"
+	pb "github.com/mJace/x-tracer/route"
 	"google.golang.org/grpc"
 	"log"
 	"os"
@@ -55,4 +55,10 @@ func main (){
 		panic(err)
 	}
 	fmt.Println(topResult.Processes)
+
+	for {
+		fmt.Println("- Sleeping")
+		time.Sleep(10 * time.Second)
+	}
+
 }

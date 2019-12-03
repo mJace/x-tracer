@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	v1 "k8s.io/api/core/v1"
@@ -10,11 +11,10 @@ import (
 	"k8s.io/kubectl/pkg/describe"
 	"k8s.io/kubectl/pkg/describe/versioned"
 	"net"
-	"context"
 
+	pb "github.com/mJace/x-tracer/route"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
-	pb "github.com/mJace/x-tracer/route"
 
 	"log"
 	"os"
@@ -126,7 +126,7 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 			},
 			Containers: []v1.Container{
 				{
-					Name:            "busybox",
+					Name:            "agent",
 					Image:           "mjace/x-agent",
 					Ports: []v1.ContainerPort{
 						{
@@ -167,10 +167,10 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 							MountPath: "/etc/localtime",
 							Name: "localtime",
 						},
-						{
-							MountPath: "/sys",
-							Name: "sys",
-						},
+						//{
+						//	MountPath: "/sys",
+						//	Name: "sys",
+						//},
 						{
 							MountPath: "/var/run/docker.sock",
 							Name: "docker-sock",
@@ -205,15 +205,15 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 						},
 					},
 				},
-				{
-					Name: "sys",
-					VolumeSource: v1.VolumeSource{
-						HostPath: &v1.HostPathVolumeSource{
-							Path: "/sys",
-							Type: &pathType,
-						},
-					},
-				},
+				//{
+				//	Name: "sys",
+				//	VolumeSource: v1.VolumeSource{
+				//		HostPath: &v1.HostPathVolumeSource{
+				//			Path: "/sys",
+				//			Type: &pathType,
+				//		},
+				//	},
+				//},
 				{
 					Name: "docker-sock",
 					VolumeSource: v1.VolumeSource{
@@ -297,7 +297,7 @@ func main() {
 
 	podObj, _ := clientSet.CoreV1().Pods(namespaces.Items[nsIndex].Name).Get(pods.Items[podIndex].Name, metav1.GetOptions{})
 
-	podDesc := versioned.PodDescriber{clientSet }
+	podDesc := versioned.PodDescriber{Interface: clientSet }
 	descStr, err :=podDesc.Describe(podObj.Namespace, podObj.Name, describe.DescriberSettings{ShowEvents:false})
 
 	descStr = strings.SplitAfter(descStr, "Node:")[1]
