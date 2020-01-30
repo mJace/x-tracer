@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/docker/docker/client"
-	pb "github.com/mJace/x-tracer/route"
+	pb "github.com/mJace/x-tracer/api"
 	"google.golang.org/grpc"
 	"log"
 	"os"
@@ -12,7 +12,7 @@ import (
 )
 
 func main (){
-	log.Println("Start route...")
+	log.Println("Start api...")
 
 	containerId := os.Getenv("containerId")
 	if containerId == "" {

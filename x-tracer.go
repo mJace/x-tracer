@@ -12,7 +12,7 @@ import (
 	"k8s.io/kubectl/pkg/describe/versioned"
 	"net"
 
-	pb "github.com/mJace/x-tracer/route"
+	pb "github.com/mJace/x-tracer/api"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
@@ -32,7 +32,7 @@ var pod *v1.Pod
 var svc *v1.Service
 
 const (
-	port  = ":5555"
+	port = ":5555"
 )
 
 type server struct{}
@@ -40,7 +40,6 @@ type server struct{}
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
 }
-
 
 func homeDir() string {
 	if h := os.Getenv("HOME"); h != "" {
@@ -54,7 +53,7 @@ func getHostName() string {
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Hostname : ",name)
+	log.Println("Hostname : ", name)
 	return name
 }
 
@@ -79,23 +78,23 @@ func getFieldString(e *v1.ContainerStatus, field string) string {
 
 func getAgentService() *v1.Service {
 	return &v1.Service{
-		TypeMeta:   metav1.TypeMeta{
-			Kind: "service",
+		TypeMeta: metav1.TypeMeta{
+			Kind:       "service",
 			APIVersion: "v1",
 		},
 		ObjectMeta: metav1.ObjectMeta{
-			Name: "agent-service",
+			Name:      "agent-service",
 			Namespace: "default",
 		},
-		Spec:       v1.ServiceSpec{
+		Spec: v1.ServiceSpec{
 			Selector: map[string]string{
 				"app": "x-agent",
 			},
 			Ports: []v1.ServicePort{
 				{
-					Name: "grpc",
+					Name:     "grpc",
 					Protocol: "TCP",
-					Port: 5555,
+					Port:     5555,
 				},
 			},
 		},
@@ -115,19 +114,18 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 			Name:      "x-agent",
 			Namespace: "default",
 			Labels: map[string]string{
-				"app" : "x-agent",
+				"app": "x-agent",
 			},
 		},
 		Spec: v1.PodSpec{
 			NodeSelector: map[string]string{
 
-					"kubernetes.io/hostname" : nodeId,
-
+				"kubernetes.io/hostname": nodeId,
 			},
 			Containers: []v1.Container{
 				{
-					Name:            "agent",
-					Image:           "mjace/x-agent",
+					Name:  "agent",
+					Image: "mjace/x-agent",
 					Ports: []v1.ContainerPort{
 						{
 							Name:          "grpc",
@@ -137,8 +135,8 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 					},
 					ImagePullPolicy: v1.PullIfNotPresent,
 					SecurityContext: &v1.SecurityContext{
-						Privileged:               &t,
-						RunAsUser:                &user,
+						Privileged: &t,
+						RunAsUser:  &user,
 					},
 					Env: []v1.EnvVar{
 						{
@@ -150,26 +148,26 @@ func getAgentPodObject(containerId string, nodeId string, masterIp string) *v1.P
 							Value: "net",
 						},
 						{
-							Name: "masterIp",
+							Name:  "masterIp",
 							Value: masterIp,
 						},
 					},
 					VolumeMounts: []v1.VolumeMount{
 						{
 							MountPath: "/lib/modules",
-							Name: "kernel-modules",
+							Name:      "kernel-modules",
 						},
 						{
 							MountPath: "/usr/src",
-							Name: "kernel-src",
+							Name:      "kernel-src",
 						},
 						{
 							MountPath: "/etc/localtime",
-							Name: "localtime",
+							Name:      "localtime",
 						},
 						{
 							MountPath: "/var/run/docker.sock",
-							Name: "docker-sock",
+							Name:      "docker-sock",
 						},
 					},
 				},
@@ -230,12 +228,10 @@ func main() {
 		panic(err.Error())
 	}
 
-	 clientSet, err = kubernetes.NewForConfig(config)
+	clientSet, err = kubernetes.NewForConfig(config)
 	if err != nil {
 		panic(err.Error())
 	}
-
-
 
 	namespaces, err := clientSet.CoreV1().Namespaces().List(metav1.ListOptions{})
 	if err != nil {
@@ -281,14 +277,13 @@ func main() {
 
 	podObj, _ := clientSet.CoreV1().Pods(namespaces.Items[nsIndex].Name).Get(pods.Items[podIndex].Name, metav1.GetOptions{})
 
-	podDesc := versioned.PodDescriber{Interface: clientSet }
-	descStr, err :=podDesc.Describe(podObj.Namespace, podObj.Name, describe.DescriberSettings{ShowEvents:false})
+	podDesc := versioned.PodDescriber{Interface: clientSet}
+	descStr, err := podDesc.Describe(podObj.Namespace, podObj.Name, describe.DescriberSettings{ShowEvents: false})
 
 	descStr = strings.SplitAfter(descStr, "Node:")[1]
 	descStr = strings.Split(descStr, "/")[0]
 	reg := regexp.MustCompile("[^\\s]+")
-	targetNode := reg.FindAllString(descStr,1)[0]
-
+	targetNode := reg.FindAllString(descStr, 1)[0]
 
 	var containerId string
 	for index := range podObj.Status.ContainerStatuses {
@@ -304,7 +299,7 @@ func main() {
 	} else {
 		currentNode, err = clientSet.CoreV1().Nodes().Get(getHostName(), metav1.GetOptions{})
 	}
-	nodeIp := strings.Split(currentNode.Status.Addresses[0].Address," ")[0]
+	nodeIp := strings.Split(currentNode.Status.Addresses[0].Address, " ")[0]
 
 	// Initial pod and service.
 	agentPod := getAgentPodObject(containerId, targetNode, nodeIp)
@@ -321,7 +316,6 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("x-tracer agent service created successfully...")
-
 
 	// Get svc cluster IP
 	svcObj, err := clientSet.CoreV1().Services(agentSvc.Namespace).Get(svc.Name, metav1.GetOptions{})
