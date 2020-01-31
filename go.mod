@@ -12,7 +12,7 @@ require (
 	golang.org/x/sys v0.0.0-20190902133755-9109b7679e13 // indirect
 	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
 	google.golang.org/appengine v1.6.1 // indirect
-	google.golang.org/grpc v1.25.1
+	google.golang.org/grpc v1.27.0
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc // indirect
 	k8s.io/api v0.0.0-20191121015604-11707872ac1c

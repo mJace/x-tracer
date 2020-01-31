@@ -12,6 +12,7 @@ TESTFLAGS  :=
 LDFLAGS    := -w -s
 GOFLAGS    :=
 SRC        := $(shell find . -type f -name '*.go' -print)
+SRC_AGENT  := $(shell find ./x-agent -type f -name '*.go' -print)
 
 GIT_COMMIT = $(shell git rev-parse HEAD)
 GIT_SHA    = $(shell git rev-parse --short HEAD)
@@ -28,6 +29,11 @@ all: build
 build: $(BINDIR)/$(BINNAME)
 $(BINDIR)/$(BINNAME): $(SRC)
 	GO111MODULE=on go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/$(BINNAME) ./cmd
+
+.PHONY: agent
+agent: $(BINDIR)/x-agent
+$(BINDIR)/x-agent: $(SRC_AGENT)
+	GO111MODULE=on go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/x-agent ./x-agent/cmd
 
 # ------------------------------------------------------------------------------
 #  clean
