@@ -7,8 +7,8 @@ import (
 	pb "github.com/mJace/x-tracer/api"
 	"github.com/mJace/x-tracer/pkg/streamserver"
 	"github.com/mJace/x-tracer/internal/agentmanager"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
+	//"google.golang.org/grpc"
+	//"google.golang.org/grpc/reflection"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -16,7 +16,7 @@ import (
 	"k8s.io/kubectl/pkg/describe"
 	"k8s.io/kubectl/pkg/describe/versioned"
 	"log"
-	"net"
+	//"net"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -163,18 +163,18 @@ func main() {
 
 	agent.SetupCloseHandler()
 
-	lis, err := net.Listen("tcp", port)
-	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
-	}
-	s := grpc.NewServer()
-	log.Println("Start x-agent server...")
-	pb.RegisterGreeterServer(s, &server{})
-	// Register reflection service on gRPC server.
-	reflection.Register(s)
-	if err := s.Serve(lis); err != nil {
-		log.Fatalf("failed to serve: %v", err)
-	}
+	//lis, err := net.Listen("tcp", port)
+	//if err != nil {
+	//	log.Fatalf("failed to listen: %v", err)
+	//}
+	//s := grpc.NewServer()
+	//log.Println("Start x-agent server...")
+	//pb.RegisterGreeterServer(s, &server{})
+	//// Register reflection service on gRPC server.
+	//reflection.Register(s)
+	//if err := s.Serve(lis); err != nil {
+	//	log.Fatalf("failed to serve: %v", err)
+	//}
 
 	server := streamserver.New("6666")
 	server.StartServer()

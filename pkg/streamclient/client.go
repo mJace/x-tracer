@@ -9,11 +9,13 @@ import (
 
 type StreamClient struct {
 	port string
+	ip string
 }
 
-func New(servicePort string) *StreamClient{
+func New(servicePort string, masterIp string) *StreamClient{
 	return &StreamClient{
-		servicePort}
+		servicePort,
+		masterIp}
 }
 
 
@@ -32,6 +34,9 @@ func (c *StreamClient) StartClient () {
 		Log:                  "test log 123",
 		TimeStamp:            "local current time",
 	})
+	if err!= nil {
+		log.Fatalf("startLogStream fail.err: %v", err)
+	}
 
 
 }
@@ -42,7 +47,7 @@ func (c *StreamClient) startLogStream(client pb.SentLogClient, r *pb.Log) error 
 		return err
 	}
 
-	for n := 0; n<6; n++ {
+	for n := 0; n<600; n++ {
 		err := stream.Send(r)
 		if err != nil {
 			return err

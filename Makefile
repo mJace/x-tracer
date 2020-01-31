@@ -44,4 +44,4 @@ $(BINDIR)/$(AGENT_NAME): $(SRC)
 .PHONY: clean
 clean:
 	@rm -rf $(BINDIR) ./_dist
-	@docker rmi x-agent
+	@docker rmi mjace/x-agent x-agent

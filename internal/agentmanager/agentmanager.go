@@ -85,7 +85,7 @@ func (a *agent) getAgentPodObject() *v1.Pod {
 							Protocol:      "TCP",
 						},
 					},
-					ImagePullPolicy: v1.PullIfNotPresent,
+					ImagePullPolicy: v1.PullAlways,
 					SecurityContext: &v1.SecurityContext{
 						Privileged: &t,
 						RunAsUser:  &user,
