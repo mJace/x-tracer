@@ -3,10 +3,15 @@ module github.com/mJace/x-tracer
 go 1.12
 
 require (
+	github.com/containerd/containerd v1.3.2 // indirect
+	github.com/docker/docker v1.4.2-0.20190927142053-ada3c14355ce
+	github.com/docker/go-connections v0.4.0 // indirect
+	github.com/docker/go-units v0.4.0 // indirect
 	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/golang/protobuf v1.3.2
 	github.com/google/go-cmp v0.3.1 // indirect
 	github.com/imdario/mergo v0.3.7 // indirect
+	github.com/opencontainers/image-spec v1.0.1 // indirect
 	golang.org/x/crypto v0.0.0-20190927123631-a832865fa7ad // indirect
 	golang.org/x/lint v0.0.0-20190313153728-d0100b6bd8b3 // indirect
 	golang.org/x/sys v0.0.0-20190902133755-9109b7679e13 // indirect

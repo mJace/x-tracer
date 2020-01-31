@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	pb "github.com/mJace/x-tracer/api"
+	"github.com/mJace/x-tracer/pkg/streamserver"
 	"github.com/mJace/x-tracer/internal/agentmanager"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -174,6 +175,9 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+
+	server := streamserver.New("6666")
+	server.StartServer()
 
 	// Run our program... We create a file to clean up then sleep
 	for {

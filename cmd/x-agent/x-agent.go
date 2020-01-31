@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/docker/docker/client"
 	pb "github.com/mJace/x-tracer/api"
+	"github.com/mJace/x-tracer/pkg/streamclient"
 	"google.golang.org/grpc"
 	"log"
 	"os"
@@ -55,6 +56,9 @@ func main (){
 		panic(err)
 	}
 	fmt.Println(topResult.Processes)
+
+	testClient := streamclient.New("6666")
+	testClient.StartClient()
 
 	for {
 		fmt.Println("- Sleeping")
