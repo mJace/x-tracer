@@ -14,9 +14,9 @@ RUN set -ex; \
   apt-get update -y; \
   apt-get install golang-go -y;
 
-COPY entrypoint.sh /
+COPY build/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
-COPY x-agent /
+COPY bin/x-agent /
 RUN chmod +x /x-agent
 
 ENTRYPOINT ["/entrypoint.sh"]

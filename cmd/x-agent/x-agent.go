@@ -4,15 +4,14 @@ import (
 	"context"
 	"fmt"
 	"github.com/docker/docker/client"
-	pb "github.com/mJace/x-tracer/route"
-	"google.golang.org/grpc"
+	"github.com/mJace/x-tracer/pkg/streamclient"
 	"log"
 	"os"
 	"time"
 )
 
 func main (){
-	log.Println("Start route...")
+	log.Println("Start api...")
 
 	containerId := os.Getenv("containerId")
 	if containerId == "" {
@@ -24,27 +23,27 @@ func main (){
 		containerId = "ec9515bb14a2"
 	}
 
-	endPoint := serverIp+":5555"
-
-	conn, err := grpc.Dial(endPoint, grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
-	}
-	defer conn.Close()
-	c := pb.NewGreeterClient(conn)
+	//endPoint := serverIp+":5555"
+	//
+	//conn, err := grpc.Dial(endPoint, grpc.WithInsecure())
+	//if err != nil {
+	//	log.Fatalf("did not connect: %v", err)
+	//}
+	//defer conn.Close()
+	//c := pb.NewGreeterClient(conn)
 
 	// Contact the server and print out its response.
-	name := "hello jace"
-	if len(os.Args) > 1 {
-		name = os.Args[1]
-	}
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
-	if err != nil {
-		log.Fatalf("could not greet: %v", err)
-	}
-	log.Printf("Greeting: %s", r.Message)
+	//name := "hello jace"
+	//if len(os.Args) > 1 {
+	//	name = os.Args[1]
+	//}
+	//ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	//defer cancel()
+	//r, err := c.SayHello(ctx, &pb.HelloRequest{Name: name})
+	//if err != nil {
+	//	log.Fatalf("could not greet: %v", err)
+	//}
+	//log.Printf("Greeting: %s", r.Message)
 
 	cli, err := client.NewClientWithOpts(client.WithHost("unix:///var/run/docker.sock"), client.WithAPIVersionNegotiation())
 	if err != nil {
@@ -55,6 +54,10 @@ func main (){
 		panic(err)
 	}
 	fmt.Println(topResult.Processes)
+
+	log.Printf("Start new client")
+	testClient := streamclient.New("6666",serverIp)
+	testClient.StartClient()
 
 	for {
 		fmt.Println("- Sleeping")
