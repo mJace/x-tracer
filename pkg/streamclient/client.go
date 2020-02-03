@@ -20,7 +20,7 @@ func New(servicePort string, masterIp string) *StreamClient{
 
 
 func (c *StreamClient) StartClient () {
-	connect, err := grpc.Dial(":"+c.port, grpc.WithInsecure())
+	connect, err := grpc.Dial(c.ip+":"+c.port, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("grpc.Dial err: %v", err)
 	}
