@@ -7,7 +7,7 @@ import (
 //	"github.com/Sheenam3/x-tracer/cmd/x-agent"
 	pp "github.com/Sheenam3/x-tracer/parse/probeparser"
 	"log"
-//	"time"	
+	"time"	
 //	"strconv"
 )
 
@@ -34,10 +34,10 @@ func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
 	client := pb.NewSentLogClient(connect)
 
 	logtcpconnect := make(chan pp.Log, 1)
-
-	go pp.RunProbe(probename[1], logtcpconnect)
+	
+	go pp.RunTcpconnect(probename[1], logtcpconnect)
 //	log.Printf("After probe")
-//	go func() {
+	go func() {
 //		pp.RunProbe(probename[1], logtcpconnect)
 	//	for i := 0;i<100;i++ {
 	//	val := <-logtcpconnect
@@ -63,14 +63,41 @@ func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
 			}
 	//	}
 
-//	}()
-/*
+	}()
+
+
+	logtcptracer := make(chan pp.Log, 1)
+	go pp.RunTcptracer(probename[0], logtcptracer)
+	go func() {
+
+		for val := range logtcptracer {
+			log.Printf("logtcptracer")
+			err = c.startLogStream(client, &pb.Log{
+				Pid:                  val.Pid,
+				ProbeName:            val.Probe,
+				Log:                  val.Fulllog,
+				TimeStamp:            "TimeStamp",
+			})
+			if err!= nil {
+			log.Fatalf("startLogStream fail.err: %v", err)
+			}
+	
+		}
+
+	}()
+
 for {
         //log.Printf("[main] Call tcptracer.Stop() in %d seconds\n", i)
         time.Sleep(time.Duration(1) * time.Second)
-    }*/
+    }
+
+
+
 
 }
+	
+
+
 
 func (c *StreamClient) startLogStream(client pb.SentLogClient, r *pb.Log) error {
 

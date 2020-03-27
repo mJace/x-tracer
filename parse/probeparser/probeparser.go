@@ -34,7 +34,7 @@ type Log struct {
 */
 
 var IsTracerDoneSig = make(chan bool, 1)
-
+var IsTCPTracerDoneSig = make(chan bool, 1)
 const (
 	timestamp int = 0
 )
@@ -72,13 +72,8 @@ const (
 	}
 }*/
 
-func RunProbe(tool string, logtcpconnect chan Log) {
+func RunTcptracer(tool string, logtcptracer chan Log) {
 
-
-	//quit := make(chan bool)
-/*
-	if tool == "tcptracer" {
-		var Tcplog []Log
 		cmd := exec.Command("./tcptracer", "-t")
 		cmd.Dir = "/usr/share/bcc/tools"
 		stdout, err := cmd.StdoutPipe()
@@ -86,16 +81,9 @@ func RunProbe(tool string, logtcpconnect chan Log) {
 			log.Fatal(err)
 		}
 		cmd.Start()
-		probePid := cmd.Process.Pid
-		log.Printf("pid: %d", cmd.Process.Pid)
-		probeName, err := ps.FindProcess(probePid)
-		if err != nil {
-			fmt.Println("Error : ", err)
-			os.Exit(-1)
-		}
-		log.Printf("Probe Name: %v", probeName.Executable())
 		buf := bufio.NewReader(stdout)
 		num := 1
+
 		for {
 
 			line, _, _ := buf.ReadLine()
@@ -111,15 +99,29 @@ func RunProbe(tool string, logtcpconnect chan Log) {
 					if err != nil {
 						println(" Tcptracer Timestamp Error")
 					}
+					n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
+					logtcptracer <- n
+					if num > 1000 {
+                                                close(logtcptracer)
+                                                log.Println("Tracer has been Stopped")
+                                                IsTCPTracerDoneSig <- true
 
-					pn := probeName.Executable()
-					n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: pn}
-					Tcplog = append(Tcplog, n)
-
+                        	        }
+                            	num++
+				//Tcplog = append(Tcplog, n)
 				}
 			}
+		}
+}
 
-			if num > 10 {
+
+
+
+func RunTcpconnect(tool string, logtcpconnect chan Log) {
+
+
+	
+/*			if num > 10 {
 				for i := 0; i < 9; i++ {
 					return Tcplog
 					/*fmt.Printf("Struct %d  includes: %v\n", i, tcplog[i])
@@ -132,7 +134,7 @@ func RunProbe(tool string, logtcpconnect chan Log) {
 		}
 	}*/
 
-	if tool == "tcpconnect" {
+	//if tool == "tcpconnect" {
 		cmd := exec.Command("./tcpconnect", "-t")
 		cmd.Dir = "/usr/share/bcc/tools"
 		stdout, err := cmd.StdoutPipe()
@@ -162,7 +164,7 @@ func RunProbe(tool string, logtcpconnect chan Log) {
 				logtcpconnect <- n
 				if num > 300 {
 						close(logtcpconnect)
-						log.Println("Tracer has been Stopped")					
+						log.Println("Tracerconnect has been Stopped")					
 						IsTracerDoneSig <- true
 						
 				}
@@ -182,7 +184,7 @@ func RunProbe(tool string, logtcpconnect chan Log) {
 			num += 1*/
 
 		}
-	}
+	//}
 	
 }
 
