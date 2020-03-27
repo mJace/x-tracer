@@ -49,8 +49,8 @@ func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
 						//log.Printf("PID: %d", pidList[j][k])
 
 						err = c.startLogStream(client, &pb.Log{
-						Pid:                  123,
-						ProbeName:            "probe", //val.Probe,
+						Pid:                  val.Pid,
+						ProbeName:            val.Probe,
 						Log:                  val.Fulllog,
 						TimeStamp:            "TimeStamp",
 						})

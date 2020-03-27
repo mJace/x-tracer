@@ -27,7 +27,7 @@ func (s *StreamServer) RouteLog(stream pb.SentLog_RouteLogServer) error {
 		}
 		fmt.Println("\n", r.Log)
 		fmt.Println("PID:",r.Pid)
-		fmt.Println("ProbeName: ",r.ProbeName)
+		fmt.Println("ProbeName:",r.ProbeName)
 		//fmt.Println(r.TimeStamp, "\n")
 	}
 }
