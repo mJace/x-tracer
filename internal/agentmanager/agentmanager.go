@@ -1,6 +1,7 @@
 package agentmanager
 
 import (
+//	"fmt"
 	v1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -56,6 +57,7 @@ func (a *agent) getAgentService() *v1.Service {
 func (a *agent) getAgentPodObject() *v1.Pod {
 	t := true
 	var user int64 = 0
+	net := "tcptracer,tcpconnect"
 	//var pathType = v1.HostPathDirectory
 	return &v1.Pod{
 		TypeMeta: metav1.TypeMeta{
@@ -77,7 +79,10 @@ func (a *agent) getAgentPodObject() *v1.Pod {
 			Containers: []v1.Container{
 				{
 					Name:  "agent",
-					Image: "mjace/x-agent",
+					Image: "sheenam3/x-agent",
+					/*Command: []string{
+						 "sleep",
+						 "9900000" },*/
 					Ports: []v1.ContainerPort{
 						{
 							Name:          "grpc",
@@ -97,7 +102,7 @@ func (a *agent) getAgentPodObject() *v1.Pod {
 						},
 						{
 							Name:  "tools",
-							Value: "net",
+							Value: net,
 						},
 						{
 							Name:  "masterIp",

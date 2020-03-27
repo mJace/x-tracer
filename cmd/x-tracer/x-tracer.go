@@ -4,9 +4,9 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	pb "github.com/mJace/x-tracer/api"
-	"github.com/mJace/x-tracer/pkg/streamserver"
-	"github.com/mJace/x-tracer/internal/agentmanager"
+	pb "github.com/Sheenam3/x-tracer/api"
+	"github.com/Sheenam3/x-tracer/pkg/streamserver"
+	"github.com/Sheenam3/x-tracer/internal/agentmanager"
 	//"google.golang.org/grpc"
 	//"google.golang.org/grpc/reflection"
 	v1 "k8s.io/api/core/v1"
@@ -181,7 +181,7 @@ func main() {
 
 	// Run our program... We create a file to clean up then sleep
 	for {
-		fmt.Println("- Sleeping")
+		fmt.Println("From x-tracer- Sleeping")
 		time.Sleep(10 * time.Second)
 	}
 

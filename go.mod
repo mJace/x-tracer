@@ -1,25 +1,13 @@
-module github.com/mJace/x-tracer
+module github.com/Sheenam3/x-tracer
 
 go 1.12
 
 require (
-	github.com/containerd/containerd v1.3.2 // indirect
 	github.com/docker/docker v1.4.2-0.20190927142053-ada3c14355ce
-	github.com/docker/go-connections v0.4.0 // indirect
-	github.com/docker/go-units v0.4.0 // indirect
-	github.com/gogo/protobuf v1.3.1 // indirect
 	github.com/golang/protobuf v1.3.2
-	github.com/google/go-cmp v0.3.1 // indirect
-	github.com/imdario/mergo v0.3.7 // indirect
-	github.com/opencontainers/image-spec v1.0.1 // indirect
-	golang.org/x/crypto v0.0.0-20190927123631-a832865fa7ad // indirect
-	golang.org/x/lint v0.0.0-20190313153728-d0100b6bd8b3 // indirect
-	golang.org/x/sys v0.0.0-20190902133755-9109b7679e13 // indirect
-	golang.org/x/time v0.0.0-20191024005414-555d28b269f0 // indirect
-	google.golang.org/appengine v1.6.1 // indirect
+	github.com/mJace/x-tracer v0.0.0-20200203080756-04fe6aafd1ed
+	github.com/mitchellh/go-ps v1.0.0
 	google.golang.org/grpc v1.27.0
-	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
-	honnef.co/go/tools v0.0.0-20190523083050-ea95bdfd59fc // indirect
 	k8s.io/api v0.0.0-20191121015604-11707872ac1c
 	k8s.io/apimachinery v0.0.0-20191123233150-4c4803ed55e3
 	k8s.io/client-go v0.0.0-20191123055820-8d0e6f1b7b78
