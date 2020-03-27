@@ -37,11 +37,21 @@ agent: $(BINDIR)/$(AGENT_NAME)
 $(BINDIR)/$(AGENT_NAME): $(SRC)
 	@echo "====    Build x-agent    ===="
 	GO111MODULE=on go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/$(AGENT_NAME) ./cmd/x-agent
-	docker build -f build/Dockerfile -t "x-agent" . --no-cache
+	docker build --pull=false -f build/Dockerfile -t "x-agent" . --no-cache
+	docker tag x-agent sheenam3/x-agent:latest
+	docker push sheenam3/x-agent:latest
+#	docker save x-agent | gzip > x-agent.tar.gz
+#	scp x-agent.tar.gz root@node2:~/
+#	ssh root@node2 'docker load < x-agent.tar.gz
+
 
 # ------------------------------------------------------------------------------
 #  clean
 .PHONY: clean
 clean:
 	@rm -rf $(BINDIR) ./_dist
-	@docker rmi mjace/x-agent x-agent
+	@docker rmi x-agent
+	@docker rmi sheenam3/x-agent:latest
+#	@rm x-agent.tar.gz
+#	@ssh root@node2 'docker rmi x-agent'
+#	@ssh root@node2 'rm ~/x-agent.tar.gz' 
