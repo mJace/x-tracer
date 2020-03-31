@@ -8,7 +8,7 @@ import (
 	pp "github.com/Sheenam3/x-tracer/parse/probeparser"
 	"log"
 	"time"	
-//	"strconv"
+	"strconv"
 )
 
 type StreamClient struct {
@@ -23,7 +23,7 @@ func New(servicePort string, masterIp string) *StreamClient{
 }
 
 
-func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
+func (c *StreamClient) StartClient(probename []string, pidList [][]string){  //[]pp.Log) {
 	connect, err := grpc.Dial(c.ip+":"+c.port, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("grpc.Dial err: %v", err)
@@ -43,9 +43,9 @@ func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
 	//	val := <-logtcpconnect
 			for val := range logtcpconnect {
 //			log.Printf("%v Probe: %s, Pid: %d", val.Fulllog, val.Probe, val.Pid)
-	//		for j:= range pidList {
-	//			for k:= range pidList[j] {
-	//				if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {
+			for j:= range pidList {
+				for k:= range pidList[j] {
+					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {
 						//log.Printf("PID: %d", pidList[j][k])
 
 						err = c.startLogStream(client, &pb.Log{
@@ -58,10 +58,10 @@ func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
 							log.Fatalf("startLogStream fail.err: %v", err)
 						}
 
-	//				}
-	//			}
+					}
+				}
 			}
-	//	}
+		}
 
 	}()
 
@@ -72,16 +72,21 @@ func (c *StreamClient) StartClient(probename []string){  //[]pp.Log) {
 
 		for val := range logtcptracer {
 			log.Printf("logtcptracer")
-			err = c.startLogStream(client, &pb.Log{
-				Pid:                  val.Pid,
-				ProbeName:            val.Probe,
-				Log:                  val.Fulllog,
-				TimeStamp:            "TimeStamp",
-			})
-			if err!= nil {
-			log.Fatalf("startLogStream fail.err: %v", err)
-			}
-	
+				for j:= range pidList {
+					for k:= range pidList[j] {
+						if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {
+							err = c.startLogStream(client, &pb.Log{
+								Pid:                  val.Pid,
+								ProbeName:            val.Probe,
+								Log:                  val.Fulllog,
+								TimeStamp:            "TimeStamp",
+							})
+							if err!= nil {
+							log.Fatalf("startLogStream fail.err: %v", err)
+							}
+						}
+					}
+				}
 		}
 
 	}()
