@@ -96,7 +96,7 @@ func main (){
 	log.Printf("Start new client")
 
 	testClient := streamclient.New("6666",serverIp)
-	testClient.StartClient(Probe)//,topResult.Processes)
+	testClient.StartClient(Probe,topResult.Processes)
 
 	for {
 		fmt.Println("x-agent - Sleeping")
