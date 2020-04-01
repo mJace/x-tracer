@@ -1,51 +1,54 @@
 # x-tracer
 
-Server Streaming the bcc tool(tcpconnect) output as follows in Real Time:
+Server Streaming the filtered PID information from testpod's as follows in Real Time:
 
 <pre>
-2020/03/27 17:12:02 Start x-tracer
-
+Choose pod : 2
 ---------------------------------------------
-0 : default
-1 : kube-node-lease
-2 : kube-public
-3 : kube-system
-Choose namespace : 0
----------------------------------------------
-The namespace you chose is default
-
----------------------------------------------
-0 : learnpod
-1 : nginx
-Choose pod : 1
----------------------------------------------
-The pod you chose is nginx
+The pod you chose is testpod
 Container ID is ...
-f03e72f265ee911ca5e7b6ae4a70e4b149402fcd964273713d616d574f4e3133
-2020/03/27 17:12:06 Hostname :  dad
+19fb910a711f5eabf2cad6569a01db3702752e2f8155059654130711b8bf2c8f
+2020/04/01 12:45:25 Hostname :  dad
 Start Agent Pod
 Start Agent Service
 
- 0.000    15281  coredns      4  127.0.0.1        127.0.0.1        8080
-PID: 15281
-ProbeName: tcpconnect
+ 1.968    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
+PID: 32028
+ProbeName: tcptracer
 
- 0.132    13503  kubelet      4  169.254.25.10    169.254.25.10    9254
-PID: 13503
-ProbeName: tcpconnect
+ 2.058    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
+PID: 32028
+ProbeName: tcptracer
 
- 0.229    13503  kubelet      4  192.168.123.38   192.168.123.38   8081
-PID: 13503
-ProbeName: tcpconnect
+ 4.063    32028   iperf3       6  ::ffff:192.168.123.38 50554 ::ffff:10.233.93.65 5201
+PID: 32028
+ProbeName: tcpaccept
 
- 0.369    13503  kubelet      4  192.168.123.38   192.168.123.38   8081
-PID: 13503
-ProbeName: tcpconnect
+ 4.109    32028   iperf3       6  ::ffff:192.168.123.38 50556 ::ffff:10.233.93.65 5201
+PID: 32028
+ProbeName: tcpaccept
 
- 0.604    14450  node-cache   4  169.254.25.10    169.254.25.10    9254
-PID: 14450
-ProbeName: tcpconnect
+ 4.064    A  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
+PID: 32028
+ProbeName: tcptracer
 
- 1.000    15281  coredns      4  127.0.0.1        127.0.0.1        8080
+ 4.109    A  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
+PID: 32028
+ProbeName: tcptracer
+
+ 9.246    32028   iperf3       6  ::ffff:192.168.123.38 50586 ::ffff:10.233.93.65 5201
+PID: 32028
+ProbeName: tcpaccept
+
+ 9.289    32028   iperf3       6  ::ffff:192.168.123.38 50588 ::ffff:10.233.93.65 5201
+PID: 32028
+ProbeName: tcpaccept
+
+ 7.152    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
+PID: 32028
+ProbeName: tcptracer
+
+ 7.241    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
+PID: 32028
+ProbeName: tcptracer
 </pre>
-
