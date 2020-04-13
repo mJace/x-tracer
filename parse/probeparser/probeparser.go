@@ -3,7 +3,7 @@ package probeparser
 import (
 	"bufio"
 	//"encoding/json"
-	//"fmt"
+	"fmt"
 	"log"
 	//"os"
 	"os/exec"
@@ -24,9 +24,21 @@ const (
 	timestamp int = 0
 )
 
-func RunTcptracer(tool string, logtcptracer chan Log) {
+func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 
-	cmd := exec.Command("./tcptracer", "-t")
+	ppid := pid
+	cmdName := "ls"
+	out, err := exec.Command(cmdName, fmt.Sprintf("/proc/%s/ns/net", ppid), "-al").Output()
+	if err != nil {
+		println(err)
+	}
+	ns := string(out)
+	parse := strings.Fields(string(ns))
+//	fmt.Printf("%q\n", strings.SplitN(parse[10], "[", 10))
+	s := strings.SplitN(parse[10], "[", 10)
+	sep := strings.Split(s[1], "]")
+
+	cmd := exec.Command("./tcptracer","-t","-N" + sep[0])
 	cmd.Dir = "/usr/share/bcc/tools"
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
@@ -53,7 +65,7 @@ func RunTcptracer(tool string, logtcptracer chan Log) {
 				}
 				n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 				logtcptracer <- n
-				if num > 1000 {
+				if num > 5000 {
 					close(logtcptracer)
 					log.Println("Tracer has been Stopped")
 
@@ -93,7 +105,7 @@ func RunTcpconnect(tool string, logtcpconnect chan Log) {
 
 			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 			logtcpconnect <- n
-			if num > 300 {
+			if num > 5000 {
 				close(logtcpconnect)
 
 			}
@@ -130,7 +142,7 @@ func RunTcpaccept(tool string, logtcpaccept chan Log) {
 
 			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 			logtcpaccept <- n
-			if num > 300 {
+			if num > 5000 {
 				close(logtcpaccept)
 			}
 			num++

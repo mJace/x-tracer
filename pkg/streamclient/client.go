@@ -62,14 +62,14 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 	}()
 
 	logtcptracer := make(chan pp.Log, 1)
-	go pp.RunTcptracer(probename[0], logtcptracer)
+	go pp.RunTcptracer(probename[0], logtcptracer, pidList[0][0])
 	go func() {
 
 		for val := range logtcptracer {
 			log.Printf("logtcptracer")
-			for j := range pidList {
+		/*	for j := range pidList {
 				for k := range pidList[j] {
-					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {
+					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {*/
 						err = c.startLogStream(client, &pb.Log{
 							Pid:       val.Pid,
 							ProbeName: val.Probe,
@@ -79,9 +79,9 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 						if err != nil {
 							log.Fatalf("startLogStream fail.err: %v", err)
 						}
-					}
-				}
-			}
+					//}
+				//}
+			//}
 		}
 
 	}()

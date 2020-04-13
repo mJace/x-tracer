@@ -76,6 +76,7 @@ func (a *agent) getAgentPodObject() *v1.Pod {
 
 				"kubernetes.io/hostname": a.targetNodeId,
 			},
+			ShareProcessNamespace: &t,
 			Containers: []v1.Container{
 				{
 					Name:  "agent",
@@ -111,6 +112,11 @@ func (a *agent) getAgentPodObject() *v1.Pod {
 					},
 					VolumeMounts: []v1.VolumeMount{
 						{
+							MountPath: "/proc",
+							Name: "host-proc",
+
+						},
+						{
 							MountPath: "/lib/modules",
 							Name:      "kernel-modules",
 						},
@@ -130,6 +136,16 @@ func (a *agent) getAgentPodObject() *v1.Pod {
 				},
 			},
 			Volumes: []v1.Volume{
+				{
+					Name: "host-proc",
+					VolumeSource:v1.VolumeSource{
+						HostPath: &v1.HostPathVolumeSource{
+							Path: "/proc",
+						},
+					},
+				},
+
+
 				{
 					Name: "kernel-modules",
 					VolumeSource: v1.VolumeSource{
