@@ -46,7 +46,7 @@ func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 	}
 	cmd.Start()
 	buf := bufio.NewReader(stdout)
-	num := 1
+	//num := 1
 
 	for {
 
@@ -65,12 +65,12 @@ func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 				}
 				n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 				logtcptracer <- n
-				if num > 5000 {
-					close(logtcptracer)
-					log.Println("Tracer has been Stopped")
+				//if num > 5000 {
+				//	close(logtcptracer)
+				//	log.Println("Tracer has been Stopped")
 
-				}
-				num++
+				//}
+				//num++
 
 			}
 		}
@@ -87,7 +87,7 @@ func RunTcpconnect(tool string, logtcpconnect chan Log) {
 	}
 	cmd.Start()
 	buf := bufio.NewReader(stdout)
-	num := 1
+//	num := 1
 
 	for {
 		line, _, _ := buf.ReadLine()
@@ -105,11 +105,11 @@ func RunTcpconnect(tool string, logtcpconnect chan Log) {
 
 			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 			logtcpconnect <- n
-			if num > 5000 {
+/*			if num > 5000 {
 				close(logtcpconnect)
 
-			}
-			num++
+			}*/
+			//num++
 		}
 	}
 }
@@ -124,7 +124,7 @@ func RunTcpaccept(tool string, logtcpaccept chan Log) {
 	}
 	cmd.Start()
 	buf := bufio.NewReader(stdout)
-	num := 1
+//	num := 1
 
 	for {
 		line, _, _ := buf.ReadLine()
@@ -142,10 +142,10 @@ func RunTcpaccept(tool string, logtcpaccept chan Log) {
 
 			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 			logtcpaccept <- n
-			if num > 5000 {
+/*			if num > 5000 {
 				close(logtcpaccept)
 			}
-			num++
+			num++*/
 
 		}
 	}
