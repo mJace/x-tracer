@@ -12,43 +12,13 @@ Container ID is ...
 Start Agent Pod
 Start Agent Service
 
- 1.968    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
-PID: 32028
-ProbeName: tcptracer
-
- 2.058    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
-PID: 32028
-ProbeName: tcptracer
-
- 4.063    32028   iperf3       6  ::ffff:192.168.123.38 50554 ::ffff:10.233.93.65 5201
-PID: 32028
-ProbeName: tcpaccept
-
- 4.109    32028   iperf3       6  ::ffff:192.168.123.38 50556 ::ffff:10.233.93.65 5201
-PID: 32028
-ProbeName: tcpaccept
-
- 4.064    A  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
-PID: 32028
-ProbeName: tcptracer
-
- 4.109    A  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
-PID: 32028
-ProbeName: tcptracer
-
- 9.246    32028   iperf3       6  ::ffff:192.168.123.38 50586 ::ffff:10.233.93.65 5201
-PID: 32028
-ProbeName: tcpaccept
-
- 9.289    32028   iperf3       6  ::ffff:192.168.123.38 50588 ::ffff:10.233.93.65 5201
-PID: 32028
-ProbeName: tcpaccept
-
- 7.152    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
-PID: 32028
-ProbeName: tcptracer
-
- 7.241    X  32028  iperf3           6  [::]             [0:ffff:ae9:5d41::] 0      65535
-PID: 32028
-ProbeName: tcptracer
+ {Probe:tcpaccept |T: 348.477 | PID:5644 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:45952 | LADDR:::ffff:127.0.0.1 | LPORT:6001
+{Probe:tcpaccept |T: 348.521 | PID:5644 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:45954 | LADDR:::ffff:127.0.0.1 | LPORT:6001
+{Probe:tcpaccept |T: 351.667 | PID:5644 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:45978 | LADDR:::ffff:127.0.0.1 | LPORT:6001
+{Probe:tcptracer |T: 331.377 | PID:32703 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45848 | DPORT:6001
+{Probe:tcptracer |T: 334.427 | PID:5644 | PNAME:iperf3 |IP->6 | SADDR:[::] | DADDR:[0:ffff:7f00:1::] | SPORT:0 | DPORT:65535
+{Probe:tcptracer |T: 334.512 | PID:32703 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45848 | DPORT:6001
+{Probe:tcptracer |T: 334.513 | PID:5644 | PNAME:iperf3 |IP->6 | SADDR:[::] | DADDR:[0:ffff:7f00:1::] | SPORT:0 | DPORT:65535
+{Probe:tcptracer |T: 334.516 | PID:32703 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45846 | DPORT:6001
+{Probe:tcptracer |T: 334.520 | PID:32717 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45864 | DPORT:6001
 </pre>
