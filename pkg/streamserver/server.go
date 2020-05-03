@@ -1,6 +1,7 @@
 package streamserver
 
 import (
+	"strings"
 	"fmt"
 	pb "github.com/mJace/x-tracer/api"
 	"google.golang.org/grpc"
@@ -25,9 +26,33 @@ func (s *StreamServer) RouteLog(stream pb.SentLog_RouteLogServer) error {
 		if err != nil {
 			return err
 		}
-		fmt.Println("\n", r.Log)
-		fmt.Println("PID:",r.Pid)
-		fmt.Println("ProbeName:",r.ProbeName)
+//		fmt.Println("\n", r.Log)
+
+	        parse := strings.Fields(string(r.Log))
+//		fmt.Println("PID:",r.Pid)
+
+
+
+		if r.ProbeName == "tcptracer"{
+
+		//fmt.Println("ProbeName:",r.ProbeName)
+                //fmt.Printf("{%s}\n", r.Log)
+                fmt.Printf("{Probe:%s |T: %s | PID:%s | PNAME:%s |IP->%s | SADDR:%s | DADDR:%s | SPORT:%s | DPORT:%s \n",r.ProbeName,parse[0],parse[2],parse[3],parse[4],parse[5],parse[6],parse[7],parse[8])
+
+                }else if r.ProbeName == "tcpaccept"{
+
+                //fmt.Println("ProbeName:",r.ProbeName)
+		//fmt.Printf("{%s}\n", r.Log)
+                fmt.Printf("{Probe:%s |T: %s | PID:%s | PNAME:%s | IP:%s | RADDR:%s | RPORT:%s | LADDR:%s | LPORT:%s \n",r.ProbeName,parse[0],parse[1],parse[2],parse[3],parse[4],parse[5],parse[6],parse[7])
+
+                }else{
+
+                //fmt.Printf("{%s}\n", r.Log)
+		
+                fmt.Printf("{Probe:%s |T: %s | PID:%s | PNAME:%s | IP:%s | SADDR:%s | DADDR:%s | DPORT:%s \n",r.ProbeName,parse[0],parse[1],parse[2],parse[3],parse[4],parse[5],parse[6])
+
+
+                }
 		//fmt.Println(r.TimeStamp, "\n")
 	}
 }
