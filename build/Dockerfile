@@ -1,5 +1,6 @@
 FROM sheenam3/ubuntu18.04
-COPY parse/probeparser/probeparser.go /
+COPY ebpf /usr/share/bcc/tools/ebpf/
+RUN chmod +x /usr/share/bcc/tools/ebpf/*
 COPY build/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 COPY bin/x-agent /

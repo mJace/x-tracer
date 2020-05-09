@@ -24,9 +24,24 @@ const (
 	timestamp int = 0
 )
 
+
+func GetNS(pid string) string {
+	cmdName := "ls"
+        out, err := exec.Command(cmdName, fmt.Sprintf("/proc/%s/ns/net", pid), "-al").Output()
+        if err != nil {
+                println(err)
+        }
+        ns := string(out)
+        parse := strings.Fields(string(ns))
+        s := strings.SplitN(parse[10], "[", 10)
+        sep := strings.Split(s[1], "]")
+        return sep[0]
+
+}
 func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 
-	ppid := pid
+	sep := GetNS(pid)
+/*	ppid := pid
 	cmdName := "ls"
 	out, err := exec.Command(cmdName, fmt.Sprintf("/proc/%s/ns/net", ppid), "-al").Output()
 	if err != nil {
@@ -37,9 +52,9 @@ func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 //	fmt.Printf("%q\n", strings.SplitN(parse[10], "[", 10))
 	s := strings.SplitN(parse[10], "[", 10)
 	sep := strings.Split(s[1], "]")
-
-	cmd := exec.Command("./tcptracer","-t","-N" + sep[0])
-	cmd.Dir = "/usr/share/bcc/tools"
+*/
+	cmd := exec.Command("./tcptracer.py","-T","-t","-N" + sep)
+	cmd.Dir = "/usr/share/bcc/tools/ebpf"
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		log.Fatal(err)
@@ -77,10 +92,11 @@ func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 	}
 }
 
-func RunTcpconnect(tool string, logtcpconnect chan Log) {
+func RunTcpconnect(tool string, logtcpconnect chan Log, pid string ) {
 
-	cmd := exec.Command("./tcpconnect", "-t")
-	cmd.Dir = "/usr/share/bcc/tools"
+	sep := GetNS(pid)
+	cmd := exec.Command("./tcpconnect.py", "-T","-t","-N" + sep)
+	cmd.Dir = "/usr/share/bcc/tools/ebpf"
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		log.Fatal(err)
@@ -114,10 +130,11 @@ func RunTcpconnect(tool string, logtcpconnect chan Log) {
 	}
 }
 
-func RunTcpaccept(tool string, logtcpaccept chan Log) {
+func RunTcpaccept(tool string, logtcpaccept chan Log, pid string) {
 
-	cmd := exec.Command("./tcpaccept", "-t")
-	cmd.Dir = "/usr/share/bcc/tools"
+	sep := GetNS(pid)
+	cmd := exec.Command("./tcpaccept.py", "-T","-t","-N" + sep)
+	cmd.Dir = "/usr/share/bcc/tools/ebpf"
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		log.Fatal(err)

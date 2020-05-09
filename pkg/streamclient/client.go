@@ -6,7 +6,7 @@ import (
 	pp "github.com/Sheenam3/x-tracer/parse/probeparser"
 	"google.golang.org/grpc"
 	"log"
-	"strconv"
+//	"strconv"
 	"time"
 )
 
@@ -33,15 +33,15 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 
 	logtcpconnect := make(chan pp.Log, 1)
 
-	go pp.RunTcpconnect(probename[1], logtcpconnect)
+	go pp.RunTcpconnect(probename[1], logtcpconnect, pidList[0][0])
 
 	go func() {
 
 		for val := range logtcpconnect {
 
-			for j := range pidList {
+			/*for j := range pidList {
 				for k := range pidList[j] {
-					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {
+					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {*/
 						//log.Printf("PID: %d", pidList[j][k])
 
 						err = c.startLogStream(client, &pb.Log{
@@ -54,9 +54,9 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 							log.Fatalf("startLogStream fail.err: %v", err)
 						}
 
-					}
-				}
-			}
+					//}
+				//}
+			//}
 		}
 
 	}()
@@ -87,13 +87,13 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 	}()
 
 	logtcpaccept := make(chan pp.Log, 1)
-	go pp.RunTcpaccept(probename[2], logtcpaccept)
+	go pp.RunTcpaccept(probename[2], logtcpaccept, pidList[0][0])
 	go func() {
 
 		for val := range logtcpaccept {
-			for j := range pidList {
-				for k := range pidList[j] {
-					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {
+		/*	for j := range pidList {
+				for k := range pidList[j] /
+					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {*/
 						err = c.startLogStream(client, &pb.Log{
 							Pid:       val.Pid,
 							ProbeName: val.Probe,
@@ -103,9 +103,9 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 						if err != nil {
 							log.Fatalf("startLogStream fail.err: %v", err)
 						}
-					}
-				}
-			}
+					//}
+				//}
+			//}
 		}
 
 	}()
