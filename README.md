@@ -12,13 +12,9 @@ Container ID is ...
 Start Agent Pod
 Start Agent Service
 
-{Probe:tcpaccept |T: 348.477 | PID:5644 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:45952 | LADDR:::ffff:127.0.0.1 | LPORT:6001
-{Probe:tcpaccept |T: 348.521 | PID:5644 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:45954 | LADDR:::ffff:127.0.0.1 | LPORT:6001
-{Probe:tcpaccept |T: 351.667 | PID:5644 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:45978 | LADDR:::ffff:127.0.0.1 | LPORT:6001
-{Probe:tcptracer |T: 331.377 | PID:32703 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45848 | DPORT:6001
-{Probe:tcptracer |T: 334.427 | PID:5644 | PNAME:iperf3 |IP->6 | SADDR:[::] | DADDR:[0:ffff:7f00:1::] | SPORT:0 | DPORT:65535
-{Probe:tcptracer |T: 334.512 | PID:32703 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45848 | DPORT:6001
-{Probe:tcptracer |T: 334.513 | PID:5644 | PNAME:iperf3 |IP->6 | SADDR:[::] | DADDR:[0:ffff:7f00:1::] | SPORT:0 | DPORT:65535
-{Probe:tcptracer |T: 334.516 | PID:32703 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45846 | DPORT:6001
-{Probe:tcptracer |T: 334.520 | PID:32717 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:45864 | DPORT:6001
+{Probe:tcptracer |Sys_Time: 04:03:39 |T: 25.724 | PID:20656 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:42334 | DPORT:6001 
+{Probe:tcpconnect |Sys_Time: 04:03:40 |T: 28.857 | PID:20656 | PNAME:iperf3 | IP:4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | DPORT:6001 
+{Probe:tcptracer |Sys_Time: 04:03:39 |T: 25.724 | PID:8592 | PNAME:iperf3 |IP->6 | SADDR:[::] | DADDR:[0:ffff:7f00:1::] | SPORT:0 | DPORT:65535 
+{Probe:tcpaccept |Sys_Time: 04:03:40 |T: 28.863 | PID:8592 | PNAME:iperf3 | IP:6 | RADDR:::ffff:127.0.0.1 | RPORT:42336 | LADDR:::ffff:127.0.0.1 | LPORT:6001 
+{Probe:tcptracer |Sys_Time: 04:03:40 |T: 25.767 | PID:20656 | PNAME:iperf3 |IP->4 | SADDR:127.0.0.1 | DADDR:127.0.0.1 | SPORT:42336 | DPORT:6001 
 </pre>
