@@ -70,14 +70,15 @@ func RunTcptracer(tool string, logtcptracer chan Log, pid string) {
 		//println("TCP TRACER", parsedLine[0])
 		if parsedLine[0] != "Tracing" {
 			if parsedLine[0] != "TIME(s)" {
-				ppid, err := strconv.ParseInt(parsedLine[2], 10, 64)
+				ppid, err := strconv.ParseInt(parsedLine[3], 10, 64)
 				if err != nil {
 					println("Tcptracer PID Error")
 				}
-				timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
+				/*timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
 				if err != nil {
 					println(" Tcptracer Timestamp Error")
-				}
+				}*/
+				timest := 0.00
 				n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 				logtcptracer <- n
 				//if num > 5000 {
@@ -110,15 +111,15 @@ func RunTcpconnect(tool string, logtcpconnect chan Log, pid string ) {
 		parsedLine := strings.Fields(string(line))
 		//println(parsedLine[0])
 		if parsedLine[0] != "TIME(s)" {
-			ppid, err := strconv.ParseInt(parsedLine[1], 10, 64)
+			ppid, err := strconv.ParseInt(parsedLine[3], 10, 64)
 			if err != nil {
 				println("TCPConnect PID Error")
 			}
-			timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
+			/*timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
 			if err != nil {
 				println(" TCPConnect Timestamp Error")
-			}
-
+			}*/
+			timest := 0.00
 			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 			logtcpconnect <- n
 /*			if num > 5000 {
@@ -148,14 +149,15 @@ func RunTcpaccept(tool string, logtcpaccept chan Log, pid string) {
 		parsedLine := strings.Fields(string(line))
 
 		if parsedLine[0] != "TIME(s)" {
-			ppid, err := strconv.ParseInt(parsedLine[1], 10, 64)
+			ppid, err := strconv.ParseInt(parsedLine[3], 10, 64)
 			if err != nil {
 				println("TCPaccept PID Error")
 			}
-			timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
+/*			timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
 			if err != nil {
 				println(" TCPaccept Timestamp Error")
-			}
+			}*/
+			timest := 0.00
 
 			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
 			logtcpaccept <- n
@@ -165,6 +167,87 @@ func RunTcpaccept(tool string, logtcpaccept chan Log, pid string) {
 			num++*/
 
 		}
+	}
+}
+
+
+func RunTcplife(tool string, logtcplife chan Log, pid string) {
+
+	sep := GetNS(pid)
+	cmd := exec.Command("./tcplife.py", "-T","-N" + sep)
+	cmd.Dir = "/usr/share/bcc/tools/ebpf"
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		log.Fatal(err)
+	}
+	cmd.Start()
+	buf := bufio.NewReader(stdout)
+//	num := 1
+
+	for {
+		line, _, _ := buf.ReadLine()
+		parsedLine := strings.Fields(string(line))
+		println(parsedLine[0])
+		if parsedLine[0] != "TIME(s)" {
+			ppid, err := strconv.ParseInt(parsedLine[2], 10, 64)
+			if err != nil {
+				println("TCPlife PID Error")
+			}
+/*			timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
+			if err != nil {
+				println(" TCPlife Timestamp Error")
+			}*/
+			timest := 0.00
+
+			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
+			logtcplife <- n
+/*			if num > 5000 {
+				close(logtcpaccept)
+			}
+			num++*/
+
+		}
+	}
+}
+
+
+func RunExecsnoop(tool string, logexecsnoop chan Log, pid string) {
+
+	sep := GetNS(pid)
+	cmd := exec.Command("./execsnoop.py", "-t","-N" + sep)
+	cmd.Dir = "/usr/share/bcc/tools/ebpf"
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		log.Fatal(err)
+	}
+	cmd.Start()
+	buf := bufio.NewReader(stdout)
+//	num := 1
+
+	for {
+		line, _, _ := buf.ReadLine()
+		parsedLine := strings.Fields(string(line))
+
+		//if parsedLine[0] == "TIME(s)" {
+			println("inside execsnoooooop")
+			ppid, err := strconv.ParseInt(parsedLine[3], 10, 64)
+			if err != nil {
+				println("Execsnoop PID Error")
+			}
+/*			timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
+			if err != nil {
+				println(" Execsnoop Timestamp Error")
+			}*/
+			timest := 0.00
+
+			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
+			logexecsnoop <- n
+/*			if num > 5000 {
+				close(logtcpaccept)
+			}
+			num++*/
+
+		//}
 	}
 }
 

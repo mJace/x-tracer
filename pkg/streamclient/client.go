@@ -110,10 +110,63 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 
 	}()
 
-	for {
+
+	logtcplife := make(chan pp.Log, 1)
+	go pp.RunTcplife(probename[3], logtcplife, pidList[0][0])
+	go func() {
+
+		for val := range logtcplife {
+		/*	for j := range pidList {
+				for k := range pidList[j] /
+					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {*/
+						err = c.startLogStream(client, &pb.Log{
+							Pid:       val.Pid,
+							ProbeName: val.Probe,
+							Log:       val.Fulllog,
+							TimeStamp: "TimeStamp",
+						})
+						if err != nil {
+							log.Fatalf("startLogStream fail.err: %v", err)
+						}
+					//}
+				//}
+			//}
+		}
+
+	}()
+
+	logexecsnoop := make(chan pp.Log, 1)
+        println(probename[4])
+	go pp.RunExecsnoop(probename[4], logexecsnoop, pidList[0][0])
+	go func() {
+
+		for val := range logexecsnoop {
+						println("inside",val.Probe)
+//						println("execsnoop in client)
+		/*	for j := range pidList {
+				for k := range pidList[j] /
+					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {*/
+						err = c.startLogStream(client, &pb.Log{
+							Pid:       val.Pid,
+							ProbeName: val.Probe,
+							Log:       val.Fulllog,
+							TimeStamp: "TimeStamp",
+						})
+                                                println("chala gaya") 
+						if err != nil {
+							log.Fatalf("startLogStream fail.err: %v", err)
+						}
+					//}
+				//}
+			//}
+		}
+
+	}()
+
+for {
 
 		time.Sleep(time.Duration(1) * time.Second)
-	}
+}
 
 }
 
