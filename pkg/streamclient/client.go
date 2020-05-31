@@ -136,16 +136,10 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 	}()
 
 	logexecsnoop := make(chan pp.Log, 1)
-        println(probename[4])
 	go pp.RunExecsnoop(probename[4], logexecsnoop, pidList[0][0])
 	go func() {
 
 		for val := range logexecsnoop {
-						println("inside",val.Probe)
-//						println("execsnoop in client)
-		/*	for j := range pidList {
-				for k := range pidList[j] /
-					if strconv.FormatUint(uint64(val.Pid), 10) == pidList[j][k] {*/
 						err = c.startLogStream(client, &pb.Log{
 							Pid:       val.Pid,
 							ProbeName: val.Probe,
@@ -156,12 +150,49 @@ func (c *StreamClient) StartClient(probename []string, pidList [][]string) { //[
 						if err != nil {
 							log.Fatalf("startLogStream fail.err: %v", err)
 						}
-					//}
-				//}
-			//}
 		}
 
 	}()
+
+
+	logbiosnoop := make(chan pp.Log, 1)
+        go pp.RunBiosnoop(probename[5], logbiosnoop, pidList[0][0])
+        go func() {
+
+                for val := range logbiosnoop {
+                                                err = c.startLogStream(client, &pb.Log{
+                                                        Pid:       val.Pid,
+                                                        ProbeName: val.Probe,
+                                                        Log:       val.Fulllog,
+                                                        TimeStamp: "TimeStamp",
+                                                })
+                                                println("chala gaya") 
+                                                if err != nil {
+                                                        log.Fatalf("startLogStream fail.err: %v", err)
+                                                }
+                }
+
+        }()
+
+	logcachetop := make(chan pp.Log, 1)
+        go pp.RunCachetop(probename[6], logcachetop, pidList[0][0])
+        go func() {
+
+                for val := range logcachetop {
+                                                err = c.startLogStream(client, &pb.Log{
+                                                        Pid:       val.Pid,
+                                                        ProbeName: val.Probe,
+                                                        Log:       val.Fulllog,
+                                                        TimeStamp: "TimeStamp",
+                                                })
+                                                println("chala gaya") 
+                                                if err != nil {
+                                                        log.Fatalf("startLogStream fail.err: %v", err)
+                                                }
+                }
+
+        }()
+
 
 for {
 

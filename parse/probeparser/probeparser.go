@@ -214,7 +214,7 @@ func RunTcplife(tool string, logtcplife chan Log, pid string) {
 func RunExecsnoop(tool string, logexecsnoop chan Log, pid string) {
 
 	sep := GetNS(pid)
-	cmd := exec.Command("./execsnoop.py", "-t","-N" + sep)
+	cmd := exec.Command("./execsnoop.py", "-T" ,"-t","-N" + sep)
 	cmd.Dir = "/usr/share/bcc/tools/ebpf"
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
@@ -229,19 +229,18 @@ func RunExecsnoop(tool string, logexecsnoop chan Log, pid string) {
 		parsedLine := strings.Fields(string(line))
 
 		//if parsedLine[0] == "TIME(s)" {
-			println("inside execsnoooooop")
-			ppid, err := strconv.ParseInt(parsedLine[3], 10, 64)
-			if err != nil {
-				println("Execsnoop PID Error")
-			}
+		ppid, err := strconv.ParseInt(parsedLine[4], 10, 64)
+		if err != nil {
+			println("Execsnoop PID Error")
+		}
 /*			timest, err := strconv.ParseFloat(parsedLine[timestamp], 64)
 			if err != nil {
 				println(" Execsnoop Timestamp Error")
 			}*/
-			timest := 0.00
+		timest := 0.00
 
-			n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
-			logexecsnoop <- n
+		n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
+		logexecsnoop <- n
 /*			if num > 5000 {
 				close(logtcpaccept)
 			}
@@ -250,6 +249,95 @@ func RunExecsnoop(tool string, logexecsnoop chan Log, pid string) {
 		//}
 	}
 }
+
+
+
+func RunBiosnoop(tool string, logbiosnoop chan Log, pid string) {
+
+        sep := GetNS(pid)
+        cmd := exec.Command("./biosnoop.py", "-T", "-N" + sep)
+        cmd.Dir = "/usr/share/bcc/tools/ebpf"
+        stdout, err := cmd.StdoutPipe()
+        if err != nil {
+                log.Fatal(err)
+        }
+        cmd.Start()
+        buf := bufio.NewReader(stdout)
+
+
+        for {
+                line, _, _ := buf.ReadLine()
+                parsedLine := strings.Fields(string(line))
+
+
+                ppid, err := strconv.ParseInt(parsedLine[3], 10, 64)
+                if err != nil {
+                                println("Biosnoop PID Error")
+                }
+                timest := 0.00
+
+                n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
+                logbiosnoop <- n
+
+	}
+}	
+
+
+func RunCachetop(tool string, logcachetop chan Log, pid string) {
+
+        sep := GetNS(pid)
+        cmd := exec.Command("./Cachetop.py", "-T", "-N" + sep)
+        cmd.Dir = "/usr/share/bcc/tools/ebpf"
+        stdout, err := cmd.StdoutPipe()
+        if err != nil {
+                log.Fatal(err)
+        }
+        cmd.Start()
+        buf := bufio.NewReader(stdout)
+
+
+        for {
+                line, _, _ := buf.ReadLine()
+                parsedLine := strings.Fields(string(line))
+
+
+                ppid, err := strconv.ParseInt(parsedLine[1], 10, 64)
+                if err != nil {
+                     println("Cachetop PID Error")
+                }
+                timest := 0.00
+
+                n := Log{Fulllog: string(line), Pid: ppid, Time: timest, Probe: tool}
+                logcachetop <- n
+
+        }
+}       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*func main() {
 	//go RunTCP("tcptracer")

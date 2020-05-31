@@ -31,9 +31,9 @@ from bcc.utils import ArgString, printb
 import bcc.utils as utils
 import argparse
 import re
-import time
+from time import strftime
 from collections import defaultdict
-
+import time
 # arguments
 examples = """examples:
     ./execsnoop           # trace all exec() syscalls
@@ -50,6 +50,8 @@ parser = argparse.ArgumentParser(
     epilog=examples)
 parser.add_argument("-t", "--timestamp", action="store_true",
     help="include timestamp on output")
+parser.add_argument("-T", "--time", action="store_true",
+    help="include time column on output (HH:MM:SS)")
 parser.add_argument("-N", "--netns", default=0, type=int,
                     help="trace this Network Namespace only")
 parser.add_argument("-x", "--fails", action="store_true",
@@ -210,6 +212,8 @@ b.attach_kprobe(event=execve_fnname, fn_name="syscall__execve")
 b.attach_kretprobe(event=execve_fnname, fn_name="do_ret_sys_execve")
 
 # header
+if args.time:
+    print("%-9s" % ("SYS_TIME"), end="")
 if args.timestamp:
     print("%-8s" % ("TIME(s)"), end="")
 if args.netns:
@@ -262,7 +266,8 @@ def print_event(cpu, data, size):
             ]
 
         if not skip:
-	    
+	    if args.time:
+                printb(b"%-9s" % strftime("%H:%M:%S").encode('ascii'), nl="")
             if args.timestamp:
                 printb(b"%-8.3f" % (time.time() - start_ts), nl="")
             if args.netns:
