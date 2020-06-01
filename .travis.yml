@@ -1,6 +1,7 @@
 matrix:
   include:
     - language: go
-      go: 1.9.x
+      go: 
+      - 1.14.3
 script:
 - make
