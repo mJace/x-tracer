@@ -12,7 +12,7 @@ script:
 after_success:
   - docker login -u "$DOCKER_UN" -p "$DOCKER_PSWD" ;
     make push-image ;
-
+    bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email: false
