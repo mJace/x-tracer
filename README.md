@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Sheenam3/x-tracer.svg?branch=master)](https://travis-ci.com/Sheenam3/x-tracer)
+
 # x-tracer
 Hi
 Server Streaming the filtered PID information from testpod's as follows in Real Time:
