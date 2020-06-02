@@ -5,6 +5,9 @@ GOPATH = $(shell go env GOPATH)
 BINNAME     ?= x-tracer
 AGENT_NAME  ?= x-agent
 
+NS ?= sheenam3
+IMAGE  ?= x-agent
+VERSION ?= latest
 # go option
 PKG        := ./...
 TAGS       :=
@@ -37,9 +40,15 @@ agent: $(BINDIR)/$(AGENT_NAME)
 $(BINDIR)/$(AGENT_NAME): $(SRC)
 	@echo "====    Build x-agent    ===="
 	GO111MODULE=on go build $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o $(BINDIR)/$(AGENT_NAME) ./cmd/x-agent
+
+.PHONY: build-image
+build-image:
 	docker build --pull=false -f build/Dockerfile -t "x-agent" . --no-cache
-	docker tag x-agent sheenam3/x-agent:latest
-	docker push sheenam3/x-agent:latest
+
+.PHONY: push-image
+push-image:
+	docker tag x-agent $(NS)/$(IMAGE):$(VERSION)
+	docker push  $(NS)/$(IMAGE):$(VERSION)
 #	docker save x-agent | gzip > x-agent.tar.gz
 #	scp x-agent.tar.gz root@node2:~/
 #	ssh root@node2 'docker load < x-agent.tar.gz

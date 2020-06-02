@@ -3,5 +3,17 @@ matrix:
     - language: go
       go: 
       - 1.14.3
+    - services:
+      - docker
 script:
-- make
+  - 'make x-tracer'
+  - 'make x-agent'
+  - 'make build-image'
+
+after_success:
+  - docker login -u $DOCKER_UN -p $DOCKER_PSWD ;
+    make push-image ;
+
+
+notifications:
+  email: false
