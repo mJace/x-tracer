@@ -6,8 +6,8 @@ matrix:
     - services:
       - docker
 script:
-  - 'make x-tracer'
-  - 'make x-agent'
+  - 'make tracer'
+  - 'make agent'
   - 'make build-image'
 
 after_success:
