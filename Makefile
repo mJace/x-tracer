@@ -23,7 +23,7 @@ GIT_TAG    = $(shell git describe --tags --abbrev=0 --exact-match 2>/dev/null)
 GIT_DIRTY  = $(shell test -n "`git status --porcelain`" && echo "dirty" || echo "clean")
 
 .PHONY: all
-all: tracer agent
+all: tracer agent build-image push-image
 
 # ------------------------------------------------------------------------------
 #  build
