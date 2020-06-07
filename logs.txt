@@ -1,0 +1,328 @@
+{Probe: cachetop |Sys_Time: SYS_TIME | PID: PID | UID: UID | CMD: CMD | HITS: HITS | MISS: MISSES | DIRTIES: DIRTIES | READ_HIT%: READ_HIT% |W_HIT%%: WRITE_HIT%
+{Probe: cachetop |Sys_Time: 15:27:16 | PID: 5373 | UID: root | CMD: iperf3 | HITS: 411 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:16 | PID: 5439 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:16 | PID: 5439 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: cachetop |Sys_Time: 15:27:16 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:19 | PID: 5444 | UID: root | CMD: iperf3 | HITS: 410 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:19 | PID: 5449 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:19 | PID: 5449 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcpaccept |Sys_Time: TIME |T: TIME(s) | PID: PID | PNAME: COMM | IP: IP | RADDR: RADDR | RPORT: RPORT | LADDR: LADDR | LPORT: LPORT
+{Probe: tcpaccept |Sys_Time: 15:27:20 |T: 0.000 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45106 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:20 |T: 0.043 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45108 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:19 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:21 | PID: 5449 | UID: root | CMD: iperf3 | HITS: 397 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:21 | PID: 5555 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:21 | PID: 5555 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: TIME |T: TIME(s) | PID: PID | PNAME: COMM | IP: IP | RADDR: SADDR | RPORT: DADDR | LADDR: SPORT | LPORT: DPORT
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.000 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: SYS_TIME | T: TIME(s) | PNAME: PCOMM | PID: PID |PPID: PPID | RET: RET | ARGS: ARGS
+{Probe: tcpaccept |Sys_Time: 15:27:22 |T: 2.197 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45124 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: SYS_TIME |T: TIME(s) | PID: PID | PNAME: COMM | IP: IP | SADDR: SADDR | DADDR: DADDR | DPORT: DPORT
+{Probe: execsnoop | Sys_Time: 15:27:22 | T: 1.804 | PNAME: iperf3 | PID: 5564 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpconnect |Sys_Time: 15:27:22 |T: 0.000 | PID: 5564 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.092 | PID: 5555 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45108 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.104 | PID: 5555 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45106 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.110 | PID: 5564 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45124 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.098 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:22 |T: 0.042 | PID: 5564 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.110 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpaccept |Sys_Time: 15:27:22 |T: 2.239 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45126 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.152 | PID: 5564 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45126 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:21 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:23 | PID: 5555 | UID: root | CMD: iperf3 | HITS: 414 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:23 | PID: 5564 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:23 | PID: 5564 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:22 |T: 0.152 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.204 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:24 | T: 3.989 | PNAME: iperf3 | PID: 5628 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpaccept |Sys_Time: 15:27:24 |T: 4.392 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45144 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:24 |T: 2.196 | PID: 5628 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.296 | PID: 5564 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45126 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.296 | PID: 5564 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45124 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.297 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.306 | PID: 5628 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45144 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.306 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:24 |T: 2.238 | PID: 5628 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:24 |T: 4.435 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45146 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.348 | PID: 5628 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45146 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:23 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:25 | PID: 5564 | UID: root | CMD: iperf3 | HITS: 409 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:25 | PID: 5628 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:25 | PID: 5628 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:24 |T: 2.348 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:26 |T: 4.394 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.500 | PID: 5628 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45146 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:27 |T: 4.400 | PID: 5637 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:27 | T: 6.197 | PNAME: iperf3 | PID: 5637 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpaccept |Sys_Time: 15:27:27 |T: 6.600 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45158 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.502 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.505 | PID: 5628 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45144 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.510 | PID: 5637 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45158 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.513 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:27 |T: 4.446 | PID: 5637 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:27 |T: 6.643 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45160 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.556 | PID: 5637 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45160 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:25 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 19 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 37% |W_HIT%%: 63%
+{Probe: cachetop |Sys_Time: 15:27:27 | PID: 5628 | UID: root | CMD: iperf3 | HITS: 416 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:27 | PID: 5637 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:27 | PID: 5637 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:27 |T: 4.556 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.600 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.696 | PID: 5637 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45160 | LPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:29 | T: 8.400 | PNAME: iperf3 | PID: 5749 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpaccept |Sys_Time: 15:27:29 |T: 8.801 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45176 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:29 |T: 6.604 | PID: 5749 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.705 | PID: 5637 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45158 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.704 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.714 | PID: 5749 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45176 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.714 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:29 |T: 6.647 | PID: 5749 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:29 |T: 8.843 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45178 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.757 | PID: 5749 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45178 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:27 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:30 | PID: 5637 | UID: root | CMD: iperf3 | HITS: 404 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:30 | PID: 5749 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:30 | PID: 5749 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:29 |T: 6.757 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:31 | T: 10.592 | PNAME: iperf3 | PID: 5767 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.800 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:31 |T: 8.795 | PID: 5767 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:31 |T: 10.994 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45192 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.892 | PID: 5749 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45178 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.897 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.903 | PID: 5749 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45176 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.905 | PID: 5767 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45192 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.907 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:31 |T: 8.839 | PID: 5767 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:31 |T: 11.035 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45194 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.948 | PID: 5767 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45194 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:30 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:32 | PID: 5749 | UID: root | CMD: iperf3 | HITS: 414 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:32 | PID: 5767 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:32 | PID: 5767 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:31 |T: 8.948 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 10.992 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.100 | PID: 5767 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45194 | LPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:33 | T: 12.800 | PNAME: iperf3 | PID: 5824 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpconnect |Sys_Time: 15:27:33 |T: 11.007 | PID: 5824 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:33 |T: 13.203 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45210 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.107 | PID: 5767 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45192 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.102 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.116 | PID: 5824 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45210 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:33 |T: 11.051 | PID: 5824 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:33 |T: 13.247 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45212 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.117 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.160 | PID: 5824 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45212 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:32 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:34 | PID: 5767 | UID: root | CMD: iperf3 | HITS: 408 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:34 | PID: 5824 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:34 | PID: 5824 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:33 |T: 11.161 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.204 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:35 | T: 14.992 | PNAME: iperf3 | PID: 5825 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpconnect |Sys_Time: 15:27:35 |T: 13.198 | PID: 5825 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:35 |T: 15.395 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45226 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.296 | PID: 5824 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45212 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.302 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.304 | PID: 5824 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45210 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.307 | PID: 5825 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45226 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:35 |T: 13.243 | PID: 5825 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:35 |T: 15.439 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45228 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.309 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.352 | PID: 5825 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45228 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:34 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:36 | PID: 5824 | UID: root | CMD: iperf3 | HITS: 390 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:36 | PID: 5825 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:36 | PID: 5825 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:35 |T: 13.352 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:37 |T: 15.400 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:38 | T: 17.183 | PNAME: iperf3 | PID: 5834 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.488 | PID: 5825 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45228 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:38 |T: 15.389 | PID: 5834 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:38 |T: 17.585 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45240 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.492 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.495 | PID: 5825 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45226 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.498 | PID: 5834 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45240 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:38 |T: 15.430 | PID: 5834 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:38 |T: 17.627 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45242 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.498 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.540 | PID: 5834 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45242 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:36 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:38 | PID: 5825 | UID: root | CMD: iperf3 | HITS: 391 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:38 | PID: 5834 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:38 | PID: 5834 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:38 |T: 15.540 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.593 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.684 | PID: 5834 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45242 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.692 | PID: 5834 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45240 | LPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:40 | T: 19.382 | PNAME: iperf3 | PID: 5962 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpconnect |Sys_Time: 15:27:40 |T: 17.586 | PID: 5962 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:40 |T: 19.784 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45258 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.690 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.695 | PID: 5962 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45258 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:38 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:40 | PID: 5834 | UID: root | CMD: iperf3 | HITS: 417 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:40 | PID: 5962 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:40 | PID: 5962 | UID: root | CMD: iperf3 | HITS: 14 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: tcpconnect |Sys_Time: 15:27:40 |T: 17.631 | PID: 5962 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:40 |T: 19.828 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45260 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.697 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.741 | PID: 5962 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45260 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:40 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 5 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:41 | PID: 5962 | UID: root | CMD: iperf3 | HITS: 17 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 35% |W_HIT%%: 65%
+{Probe: tcptracer |Sys_Time: 15:27:40 |T: 17.741 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.784 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:42 | T: 21.576 | PNAME: iperf3 | PID: 6015 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.876 | PID: 5962 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45260 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:42 |T: 19.782 | PID: 6015 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:42 |T: 21.980 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45274 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.884 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.887 | PID: 5962 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45258 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.891 | PID: 6015 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45274 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:42 |T: 19.831 | PID: 6015 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:42 |T: 22.027 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45278 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.894 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.940 | PID: 6015 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45278 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:41 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 15 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 32% |W_HIT%%: 68%
+{Probe: cachetop |Sys_Time: 15:27:43 | PID: 5962 | UID: root | CMD: iperf3 | HITS: 395 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:43 | PID: 6015 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:43 | PID: 6015 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:42 |T: 19.940 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcplife |Sys_Time: TIME |T: NETNS | PID: COMM | PNAME: LADDR | IP: LPORT | RADDR: RADDR | RPORT: RPORT | LADDR: TX_KB | LPORT: RX_KB
+{Probe: tcplife |Sys_Time: 15:27:24 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45126 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 3975294 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:24 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45126 | LADDR: 0 | LPORT: 3975550
+{Probe: tcplife |Sys_Time: 15:27:24 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45124 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:24 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45124 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:26 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45146 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 4460688 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:26 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45146 | LADDR: 0 | LPORT: 4460688
+{Probe: tcplife |Sys_Time: 15:27:27 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45144 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:27 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45144 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:29 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45160 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 3303870 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:29 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45160 | LADDR: 0 | LPORT: 3304062
+{Probe: tcplife |Sys_Time: 15:27:29 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45158 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:29 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45158 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:31 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45178 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 4466232 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:31 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45178 | LADDR: 0 | LPORT: 4466232
+{Probe: tcplife |Sys_Time: 15:27:31 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45176 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:31 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45176 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:33 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45194 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 4054928 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:33 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45194 | LADDR: 0 | LPORT: 4054928
+{Probe: tcplife |Sys_Time: 15:27:33 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45192 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:33 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45192 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:35 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45212 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 4712703 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:35 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45212 | LADDR: 0 | LPORT: 4712894
+{Probe: tcplife |Sys_Time: 15:27:35 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45210 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:35 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45210 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:37 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45228 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 4398052 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:37 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45228 | LADDR: 0 | LPORT: 4398052
+{Probe: tcplife |Sys_Time: 15:27:38 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45226 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:38 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45226 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:40 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45242 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 3378043 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:40 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45242 | LADDR: 0 | LPORT: 3378299
+{Probe: tcplife |Sys_Time: 15:27:40 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45240 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:40 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45240 | LADDR: 0 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:42 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45260 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 4076772 | LPORT: 0
+{Probe: tcplife |Sys_Time: 15:27:42 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45260 | LADDR: 0 | LPORT: 4076964
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 21.984 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcplife |Sys_Time: 15:27:42 |T: 4026532402 | PID: iperf3 | PNAME: 127.0.0.1 | IP: 45258 | RADDR: 127.0.0.1 | RPORT: 6001 | LADDR: 0 | LPORT: 0
+{Probe: execsnoop | Sys_Time: 15:27:44 | T: 23.766 | PNAME: iperf3 | PID: 6070 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpconnect |Sys_Time: 15:27:44 |T: 21.975 | PID: 6070 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:44 |T: 24.177 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45292 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcplife |Sys_Time: 15:27:42 |T: 4026532402 | PID: iperf3 | PNAME: ::ffff:127.0.0.1 | IP: 6001 | RADDR: ::ffff:127.0.0.1 | RPORT: 45258 | LADDR: 0 | LPORT: 0
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.076 | PID: 6015 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45278 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.076 | PID: 6015 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45274 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.077 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.085 | PID: 6070 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45292 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:44 |T: 22.023 | PID: 6070 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:44 |T: 24.219 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45294 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.090 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.133 | PID: 6070 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45294 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:43 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:45 | PID: 6015 | UID: root | CMD: iperf3 | HITS: 397 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:45 | PID: 6070 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:45 | PID: 6070 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:44 |T: 22.133 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.180 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:46 | T: 25.974 | PNAME: iperf3 | PID: 6082 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.276 | PID: 6070 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45294 | LPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:46 |T: 26.376 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45308 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:46 |T: 24.180 | PID: 6082 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.279 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.284 | PID: 6070 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45292 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.289 | PID: 6082 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45308 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.289 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:46 |T: 24.223 | PID: 6082 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:46 |T: 26.420 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45310 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.332 | PID: 6082 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45310 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:45 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 19 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 37% |W_HIT%%: 63%
+{Probe: cachetop |Sys_Time: 15:27:47 | PID: 6070 | UID: root | CMD: iperf3 | HITS: 417 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:47 | PID: 6082 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:47 | PID: 6082 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:46 |T: 24.333 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpaccept |Sys_Time: 15:27:49 |T: 28.565 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45326 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:49 |T: 26.364 | PID: 6176 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:49 | T: 28.162 | PNAME: iperf3 | PID: 6176 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:48 |T: 26.379 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.472 | PID: 6082 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45310 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.472 | PID: 6082 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45308 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.474 | PID: 6176 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45326 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.473 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:49 |T: 26.410 | PID: 6176 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:49 |T: 28.607 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45328 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.478 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.520 | PID: 6176 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45328 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:47 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:49 | PID: 6082 | UID: root | CMD: iperf3 | HITS: 396 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:49 | PID: 6176 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:49 | PID: 6176 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:49 |T: 26.520 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.564 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: execsnoop | Sys_Time: 15:27:51 | T: 30.357 | PNAME: iperf3 | PID: 6187 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcpconnect |Sys_Time: 15:27:51 |T: 28.561 | PID: 6187 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.656 | PID: 6176 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45328 | LPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:51 |T: 30.762 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45344 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.667 | PID: 6176 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45326 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.664 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.670 | PID: 6187 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45344 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:51 |T: 28.611 | PID: 6187 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:51 |T: 30.807 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45346 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.675 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.721 | PID: 6187 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45346 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:49 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 19 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 37% |W_HIT%%: 63%
+{Probe: cachetop |Sys_Time: 15:27:51 | PID: 6176 | UID: root | CMD: iperf3 | HITS: 404 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:51 | PID: 6187 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:51 | PID: 6187 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:51 |T: 28.721 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.796 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpaccept |Sys_Time: 15:27:53 |T: 32.981 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45362 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.888 | PID: 6187 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45346 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:53 |T: 30.781 | PID: 6233 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:53 | T: 32.577 | PNAME: iperf3 | PID: 6233 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.888 | PID: 6187 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45344 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.890 | PID: 6233 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45362 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.889 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:53 |T: 30.826 | PID: 6233 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:53 |T: 33.023 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45364 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.894 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.936 | PID: 6233 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45364 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:51 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 20 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 38% |W_HIT%%: 62%
+{Probe: cachetop |Sys_Time: 15:27:54 | PID: 6187 | UID: root | CMD: iperf3 | HITS: 408 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:54 | PID: 6233 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:54 | PID: 6233 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
+{Probe: tcptracer |Sys_Time: 15:27:53 |T: 30.936 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 32.984 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 33.080 | PID: 6233 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45364 | LPORT: 6001
+{Probe: execsnoop | Sys_Time: 15:27:55 | T: 34.786 | PNAME: iperf3 | PID: 6254 |PPID: 406 | RET: 0 | ARGS: /usr/bin/iperf3
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 33.093 | PID: 6233 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45362 | LPORT: 6001
+{Probe: tcpconnect |Sys_Time: 15:27:55 |T: 32.993 | PID: 6254 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:55 |T: 35.190 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45378 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 33.091 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 33.103 | PID: 6254 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45378 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 33.103 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: [::] | RPORT: [0:ffff:7f00:1::] | LADDR: 0 | LPORT: 65535
+{Probe: tcpconnect |Sys_Time: 15:27:55 |T: 33.035 | PID: 6254 | PNAME: iperf3 | IP: 4 | SADDR: 127.0.0.1 | DADDR: 127.0.0.1 | DPORT: 6001
+{Probe: tcpaccept |Sys_Time: 15:27:55 |T: 35.231 | PID: 6769 | PNAME: iperf3 | IP: 6 | RADDR: ::ffff:127.0.0.1 | RPORT: 45380 | LADDR: ::ffff:127.0.0.1 | LPORT: 6001
+{Probe: tcptracer |Sys_Time: 15:27:55 |T: 33.145 | PID: 6254 | PNAME: iperf3 | IP: 4 | RADDR: 127.0.0.1 | RPORT: 127.0.0.1 | LADDR: 45380 | LPORT: 6001
+{Probe: cachetop |Sys_Time: 15:27:54 | PID: 6769 | UID: root | CMD: iperf3 | HITS: 19 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 37% |W_HIT%%: 63%
+{Probe: cachetop |Sys_Time: 15:27:56 | PID: 6233 | UID: root | CMD: iperf3 | HITS: 396 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:56 | PID: 6254 | UID: root | CMD: bash | HITS: 371 | MISS: 0 | DIRTIES: 0 | READ_HIT%: 100% |W_HIT%%: 0%
+{Probe: cachetop |Sys_Time: 15:27:56 | PID: 6254 | UID: root | CMD: iperf3 | HITS: 31 | MISS: 32 | DIRTIES: 0 | READ_HIT%: 49% |W_HIT%%: 51%
