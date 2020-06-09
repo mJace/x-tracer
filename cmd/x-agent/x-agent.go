@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"github.com/Sheenam3/x-tracer/pkg/streamclient"
 	"github.com/docker/docker/client"
-	//probeparser "github.com/sheenam3/tcptracer-goparser/parser"
-//	"github.com/Sheenam3/x-tracer/parse/probeparser"
 	"log"
 	"os"
 	"strings"
